@@ -13,11 +13,9 @@ menu:
 
 # Available social icons are powered by Font Awesome, so you can use any icon that they offer
 social:
-- {icon: 'github',     link: 'https://www.github.com/lenpaul'}
-- {icon: 'twitter',    link: 'https://twitter.com/paululele'}
-- {icon: 'linkedin',   link: 'http://www.linkedin.com/in/lenpaul/'}
-- {icon: 'envelope',   link: 'mailto:l.nguyen.paul@gmail.com'}
-- {icon: 'rss-square', link: '/feed.xml'}
+- {icon: 'github',     link: 'https://github.com/catty-halsey/catty-halsey.github.io'}
+- {icon: 'linkedin',   link: 'https://www.linkedin.com/in/ziyan-li-020958264/'}
+- {icon: 'envelope',   link: 'mailto:liziyan0528@outlook.com'}
 # - {icon: 'rss-square', link: '/rss-feed.xml'}
 
 # Customize site text
