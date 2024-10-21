@@ -1,9 +1,8 @@
 ---
 layout: post
 title: "Regression"
-author: "Paul Le"
+author: "Ziyan Li"
 categories: journal
 tags: [documentation,sample]
-image: forest.jpg
 ---
 Hello world
