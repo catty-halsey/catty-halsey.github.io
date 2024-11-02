@@ -6,7 +6,7 @@ categories: journal
 tags: [documentation, sample]
 ---
 
-Hello world
+Hello world $\rho$
 
 Before constructing a regression model, we first need to test whether the variables are correlated. After obtaining the correlation value, we further want to determine how much we can rely on this value. Like other statistical tests, there are two common tests for correlation.
 
@@ -28,7 +28,7 @@ $$
 
 where \( \sigma = \frac{1}{\sqrt{n - 3}} \).
 
-Once we have constructed a confidence interval using the normal distribution, we need to invert the interval boundaries back to the value of \( \rho \): \( \tanh(\text{CI}[a, b]) \).
+Once we have constructed a confidence interval using the normal distribution, we need to invert the interval boundaries back to the value of $ \rho $: $\tanh(\text{CI}[a, b]) $.
 
 ## Theoretical Computation of \( \beta_1 \) and \( Y \) in a Log-Linear Regression Model
 
