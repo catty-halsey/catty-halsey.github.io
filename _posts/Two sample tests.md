@@ -5,20 +5,21 @@ author: "Ziyan Li"
 categories: journal
 tags: [documentation, sample]
 ---
-When we have two sample $X$ and $Y$, we are interested in several things: correlation $\rho$ between two samples, the difference between the mean $\mu$ and variance $\sigma^2$ for two samples. Next, we introduce two hypothesis tests for each topic we are interested.
+
+When we have two samples $X$ and $Y$, we are interested in several things: the correlation $\rho$ between the two samples, and the difference in means $\mu$ and variances $\sigma^2$ for the two samples. Next, we introduce two hypothesis tests for each topic of interest.
 
 ### Correlation Tests
-Correlation $\rho \in [-1,1]$ measures how one variable change along with the other variable. In practice, we concerned about there is a correlation between two variables.i.e. $\rho \neq 0$. Additionally, due to the dual equivalence between hypothesis test and confidence interval, we can contruct a corresponding confidence interval for the correlation. Based on our goals, we can contruct the following hypothesis test:
+
+The correlation $\rho \in [-1,1]$ measures how one variable changes along with the other. In practice, we are concerned with whether there is a correlation between the two variables, i.e., $\rho \neq 0$. Additionally, due to the dual equivalence between hypothesis testing and confidence intervals, we can construct a corresponding confidence interval for the correlation. Based on our goals, we can construct the following hypothesis test:
 
 $$
-\begin{align}
-H_0: &\quad \rho = 0; \\
-H_1: &\quad \rho \neq 0
-\end{align}
+\begin{cases}
+H_0: \rho = 0 \\
+H_1: \rho \neq 0
+\end{cases}
 $$
 
-Now we can design the non-randomized test $\phi(x) \in \{0,1\}$ as $\phi(x,\rho_0)$.
-
+Now we can design the non-randomized test $\phi(x) \in \{0,1\}$ as $\phi(x, \rho_0)$.
 
 
 
