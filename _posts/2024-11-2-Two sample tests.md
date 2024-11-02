@@ -17,4 +17,4 @@ H_0: \rho = 0; \quad
 H_1: \rho \neq 0
 $$
 
-Now we can design the non-randomized test $\phi(x) \in \\{0,1\\}$ as $\phi(x,\rho_0)$."
+Now we can design the non-randomized test $\phi(x) \in \\{0,1\\}$ as $\phi(x,\rho_0)$.
