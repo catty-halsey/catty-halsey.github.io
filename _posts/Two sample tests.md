@@ -12,12 +12,12 @@ Correlation $\rho \in [-1,1]$ measures how one variable change along with the ot
 
 $$
 \begin{align}
-H_0: &\quad \rho = 0 \\
+H_0: &\quad \rho = 0; \\
 H_1: &\quad \rho \neq 0
 \end{align}
 $$
 
-Now we can design the non-randomized test $\phi(x) \in \{0,1\}$ as $\phi(x,\rho_0=0)$
+Now we can design the non-randomized test $\phi(x) \in \{0,1\}$ as $\phi(x,\rho_0)$
 
 
 
