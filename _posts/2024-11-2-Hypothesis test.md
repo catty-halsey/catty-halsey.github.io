@@ -16,17 +16,59 @@ $$
 \mathbb{E}_{\theta \in \Theta_0}[\phi(X)] \leq \alpha,
 $$
 
-We ensure that, on average, the test's false rejection rate stays within the significance level $\alpha$ under $H_0$. This approach lets us manage "borderline" cases with a controlled chance of rejection, while still maintaining the statistical rigor of the test. The Neyman-Pearson test is a classical randomized test.In the Neyman-Pearson test, when the likelihood ratio $\Lambda(x)$ equals some critical constant $k$, it indicates that the observed data is neither strongly supporting the null hypothesis $H_0$ nor the alternative hypothesis $H_1$. In this situation, you are at the threshold of making a decision. 
+We ensure that, on average, the test's false rejection rate stays within the significance level $\alpha$ under $H_0$. This approach lets us manage "borderline" cases with a controlled chance of rejection, while still maintaining the statistical rigor of the test. After we design the test, 
 
 The Neyman-Pearson lemma provides a way to design the most powerful test for distinguishing between two simple hypotheses H_0$ and H_1$. Suppose we have:
 
 - Null hypothesis: $H_0: \theta = \theta_0$
-- Alternative hypothesis: $H_1: \theta = \theta_1$
+- Alternative hypothesis: $H_1: \theta = \theta_1 > \theta_0$
 
 The likelihood ratio test statistic $\Lambda(X)$ is defined as:
 
 $$
-\Lambda(X) = \frac{L(X | \theta_0)}{L(X | \theta_1)}
+\Lambda(X) = \frac{L(X | \theta_1)}{L(X | \theta_0)}
+$$
+
+where $L(X | \theta)$ is the likelihood of observing $X$ given parameter $\theta$.
+
+The Neyman-Pearson lemma states that the most powerful test for a given significance level $\alpha$ has the form:
+
+$$
+\phi(X) = 
+\begin{cases} 
+1 & \text{if } \Lambda(X) \geq k \\
+0 & \text{if } \Lambda(X) < k
+\end{cases}
+$$
+
+where $k$ is chosen such that the test has size $\alpha$, meaning:
+
+$$
+E_{\theta_0}[\phi(X)] = P_{\theta_0}(\Lambda(X) \geq k) = \alpha
+$$
+
+In cases where $\Lambda(X) = k$ falls within a critical boundary, the test may be randomized by setting:
+
+$$
+\phi(X) = 
+\begin{cases} 
+1 & \text{if } \Lambda(X) > k \\
+p & \text{if } \Lambda(X) = k \\
+0 & \text{if } \Lambda(X) < k
+\end{cases}
+$$
+
+where $p$ is chosen to satisfy the exact level $\alpha$. This approach ensures that the test maximizes the probability of correctly rejecting $H_0$ when $H_1$ is true while controlling the probability of a Type I error at $\alpha$.
+
+ALternatively, when we want to test 
+
+- Null hypothesis: $H_0: \theta = \theta_0$
+- Alternative hypothesis: $H_1: \theta = \theta_1 < \theta_0$
+
+The likelihood ratio test statistic $\Lambda(X)$ is defined as:
+
+$$
+\Lambda(X) = \frac{L(X | \theta_1)}{L(X | \theta_0)}
 $$
 
 where $L(X | \theta)$ is the likelihood of observing $X$ given parameter $\theta$.
@@ -52,11 +94,18 @@ In cases where $\Lambda(X) = k$ falls within a critical boundary, the test may b
 $$
 \phi(X) = 
 \begin{cases} 
-1 & \text{if } \Lambda(X) < k \\
+1 & \text{if } \Lambda(X) > k \\
 p & \text{if } \Lambda(X) = k \\
-0 & \text{if } \Lambda(X) > k
+0 & \text{if } \Lambda(X) < k
 \end{cases}
 $$
 
-where $p$ is chosen to satisfy the exact level $\alpha$. This approach ensures that the test maximizes the probability of correctly rejecting $H_0$ when $H_1$ is true while controlling the probability of a Type I error at $\alpha$.
+TWO REMARKS:
+- Note that although the test statistic remains as the likelihood ratio, the desgin test changes. Hence, how we formulate our null hypothesis matters a lot. Additionally, in general, we require to find the distribution of the test statistic (the likelihood ratio in NP-test) and use $E_{\theta_0}[\phi(X)] = P_{\theta_0}(\Lambda(X) \geq k) = \alpha$ to find our threshold $k$ for the test statistics. 
+- For both NP-tests above, they are one-sided tests. By Neymann-Pearson lemma, NP-test is the uniformly most powerful test with level $\alpha$. Mathematically, it holds that $E_{\theta_1}[\phi(X)] \leq E_{\theta_1}[\phi_{NP}(X)]$ and $E_{\theta_0}[\phi(X)]=\alpha$. However, when we want to implement the two-sided test, this lemma implies the uniqueness of the NP-test. By the above construction, we notice that this is impossible in general. Hence, the NP-tests does not exists sometimes. This will lead us to a new topic how to construct a test for all hypothesis test and have the similar properties as NP-test (such largest power at level $\alpha$).
+
+Before we move into the new topic, we show two examples of NP-test
+
+
+
 
