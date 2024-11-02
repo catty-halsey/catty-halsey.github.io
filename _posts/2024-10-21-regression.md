@@ -16,15 +16,15 @@ The z-transformation helps stabilize the variance of correlation coefficients an
 
 Given a sample Pearson correlation coefficient \( r \), the z-transformation is applied using:
 
-\[
+$$
 Z = \tanh^{-1}(\rho) = \frac{1}{2} \ln \left( \frac{1 + \rho}{1 - \rho} \right)
-\]
+$$
 
 This transformation results in a \( Z \) value that follows an approximately normal distribution for large sample sizes:
 
-\[
+$$
 Z \sim N\left(\tanh^{-1}(\rho), \sigma\right)
-\]
+$$
 
 where \( \sigma = \frac{1}{\sqrt{n - 3}} \).
 
@@ -34,9 +34,9 @@ Once we have constructed a confidence interval using the normal distribution, we
 
 We assume that \( Y \) and \( X \) have the following log-linear relationship:
 
-\[
+$$
 \log(Y) = \beta_0 + \beta_1 X + \epsilon
-\]
+$$
 
 where \( \epsilon \) is the random error term with mean zero, usually assumed to be normally distributed, \( \epsilon \sim N(0, \sigma^2) \).
 
@@ -46,35 +46,35 @@ Given \( n \) data points \( (X_1, Y_1), (X_2, Y_2), \dots, (X_n, Y_n) \), we pe
 
 The linear regression equation for the log-transformed data is:
 
-\[
+$$
 \log(Y_i) = \beta_0 + \beta_1 X_i + \epsilon_i
-\]
+$$
 
 We estimate the coefficients \( \beta_0 \) and \( \beta_1 \) by minimizing the residual sum of squares (RSS):
 
-\[
+$$
 \text{RSS} = \sum_{i=1}^{n} \left( \log(Y_i) - \beta_0 - \beta_1 X_i \right)^2
-\]
+$$
 
 The least squares estimates for \( \beta_0 \) and \( \beta_1 \) are found using the normal equations:
 
-\[
+$$
 \hat{\beta}_1 = \frac{\sum_{i=1}^{n} (X_i - \bar{X})(\log(Y_i) - \overline{\log(Y)})}{\sum_{i=1}^{n} (X_i - \bar{X})^2}
-\]
+$$
 
 where \( \bar{X} \) is the sample mean of the \( X_i \)'s, and \( \overline{\log(Y)} \) is the sample mean of the log-transformed \( Y_i \)'s.
 
-\[
+$$
 \hat{\beta}_0 = \overline{\log(Y)} - \hat{\beta}_1 \bar{X}
-\]
+$$
 
 ### Step 2: Interpreting the Estimated Coefficients
 
 To interpret \( \beta_1 \), we model \( \log(Y) \) as a linear function of \( X \), then exponentiate both sides:
 
-\[
+$$
 Y_i = e^{\beta_0 + \beta_1 X_i + \epsilon_i}
-\]
+$$
 
 When \( X \) increases by 1 unit, the expected \( \log(Y) \) changes by \( \beta_1 \), meaning \( Y \) changes by a factor of \( e^{\beta_1} \). Thus, \( e^{\beta_1} \) is the factor by which the median of \( Y \) changes for a unit increase in \( X \).
 
@@ -82,15 +82,15 @@ When \( X \) increases by 1 unit, the expected \( \log(Y) \) changes by \( \beta
 
 To predict \( Y \) for a new value \( X = X_{\text{new}} \), first compute the predicted \( \log(Y) \):
 
-\[
+$$
 \log(\hat{Y}) = \hat{\beta}_0 + \hat{\beta}_1 X_{\text{new}}
-\]
+$$
 
 Then exponentiate the result:
 
-\[
+$$
 \hat{Y} = e^{\hat{\beta}_0 + \hat{\beta}_1 X_{\text{new}}}
-\]
+$$
 
 ### Step 4: Loss of Expectation and Median Interpretation
 
