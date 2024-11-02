@@ -1,7 +1,7 @@
 
 ---
 layout: post
-title: "Two sample test"
+title: "Hypothesis test"
 author: "Ziyan Li"
 categories: journal
 tags: [documentation, sample]
