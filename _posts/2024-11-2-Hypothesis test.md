@@ -103,8 +103,43 @@ $$
 TWO REMARKS:
 - Note that although the test statistic remains as the likelihood ratio, the desgin test changes. Hence, how we formulate our null hypothesis matters a lot. Additionally, in general, we require to find the distribution of the test statistic (the likelihood ratio in NP-test) and use $E_{\theta_0}[\phi(X)] = P_{\theta_0}(\Lambda(X) \geq k) = \alpha$ to find our threshold $k$ for the test statistics. 
 - For both NP-tests above, they are one-sided tests. By Neymann-Pearson lemma, NP-test is the uniformly most powerful test with level $\alpha$. Mathematically, it holds that $E_{\theta_1}[\phi(X)] \leq E_{\theta_1}[\phi_{NP}(X)]$ and $E_{\theta_0}[\phi(X)]=\alpha$. However, when we want to implement the two-sided test, this lemma implies the uniqueness of the NP-test. By the above construction, we notice that this is impossible in general. Hence, the NP-tests does not exists sometimes. This will lead us to a new topic how to construct a test for all hypothesis test and have the similar properties as NP-test (such largest power at level $\alpha$).
+- The p is also a probability they we need to figure out by inverstigating the distrbution of the test statistics. (In the following example, we show how to find it.)
 
-Before we move into the new topic, we show two examples of NP-test
+Before we move into the new topic, we show two examples of NP-test. 
+
+- Example 1.
+  Let $\Theta = \{\theta_0, \theta_1\}$, $\Theta_0 = \{\theta_0\}$ and $\Theta_1 = \{\theta_1\}$.
+Furthermore, let two densities $p_{\theta_0}$ and $p_{\theta_1}$: $[0, 1] \to \mathbb{R}$ be given by
+
+$$
+p_{\theta_0}: x \mapsto
+\begin{cases}
+    0, & \text{for } x \in [0, 0.125] \\
+    1, & \text{for } x \in (0.125, 0.75] \\
+    4x - 2, & \text{for } x \in (0.75, 1]
+\end{cases}
+$$
+
+$$
+p_{\theta_1}: x \mapsto
+\begin{cases}
+    2, & \text{for } x \in [0, 0.125] \\
+    1, & \text{for } x \in (0.125, 0.75] \\
+    -4x + 4, & \text{for } x \in (0.75, 1]
+\end{cases}
+$$
+
+We can observe the the likelihood ratio remains 1 when $x \in (0.125, 0.75)$. Assume we want to construct a NP-test at level 0.125. We need to confirm the 1 is exactly the threshold, so we can compute whether $E_{\theta_0}[\phi(X)]$ for $k>1$ and $k<1$ is less than 0.125. Then, we confirm $k=1$. Use the similar trick, we can also get the $q=0.2$. Hence, we construct the NP-test for the null hypothesis at level 0.125 as following
+
+$$
+\phi(X) = 
+\begin{cases} 
+1 & \text{if } \Lambda(X) > 1 \\
+0.2 & \text{if } \Lambda(X) = 1 \\
+0 & \text{if } \Lambda(X) < 1
+\end{cases}
+$$
+
 
 
 
