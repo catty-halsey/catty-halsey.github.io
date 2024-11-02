@@ -16,4 +16,47 @@ $$
 \mathbb{E}_{\theta \in \Theta_0}[\phi(X)] \leq \alpha,
 $$
 
-We ensure that, on average, the test's false rejection rate stays within the significance level $\alpha$ under $H_0$. This approach lets us manage "borderline" cases with a controlled chance of rejection, while still maintaining the statistical rigor of the test. The Neyman-Pearson test is a classical randomized test.In the Neyman-Pearson test, when the likelihood ratio $\Lambda(x)$ equals some critical constant $k$, it indicates that the observed data is neither strongly supporting the null hypothesis $H_0$ nor the alternative hypothesis $H_1$. In this situation, you are at the threshold of making a decision.
+We ensure that, on average, the test's false rejection rate stays within the significance level $\alpha$ under $H_0$. This approach lets us manage "borderline" cases with a controlled chance of rejection, while still maintaining the statistical rigor of the test. The Neyman-Pearson test is a classical randomized test.In the Neyman-Pearson test, when the likelihood ratio $\Lambda(x)$ equals some critical constant $k$, it indicates that the observed data is neither strongly supporting the null hypothesis $H_0$ nor the alternative hypothesis $H_1$. In this situation, you are at the threshold of making a decision. 
+
+The Neyman-Pearson lemma provides a way to design the most powerful test for distinguishing between two simple hypotheses H_0$ and H_1$. Suppose we have:
+
+- Null hypothesis: $H_0: \theta = \theta_0$
+- Alternative hypothesis: $H_1: \theta = \theta_1$
+
+The likelihood ratio test statistic $\Lambda(X)$ is defined as:
+
+$$
+\Lambda(X) = \frac{L(X | \theta_0)}{L(X | \theta_1)}
+$$
+
+where $L(X | \theta)$ is the likelihood of observing $X$ given parameter $\theta$.
+
+The Neyman-Pearson lemma states that the most powerful test for a given significance level $\alpha$ has the form:
+
+$$
+\phi(X) = 
+\begin{cases} 
+1 & \text{if } \Lambda(X) \leq k \\
+0 & \text{if } \Lambda(X) > k
+\end{cases}
+$$
+
+where $k$ is chosen such that the test has size $\alpha$, meaning:
+
+$$
+E_{\theta_0}[\phi(X)] = P_{\theta_0}(\Lambda(X) \leq k) = \alpha
+$$
+
+In cases where $\Lambda(X) = k$ falls within a critical boundary, the test may be randomized by setting:
+
+$$
+\phi(X) = 
+\begin{cases} 
+1 & \text{if } \Lambda(X) < k \\
+p & \text{if } \Lambda(X) = k \\
+0 & \text{if } \Lambda(X) > k
+\end{cases}
+$$
+
+where $p$ is chosen to satisfy the exact level $\alpha$. This approach ensures that the test maximizes the probability of correctly rejecting $H_0$ when $H_1$ is true while controlling the probability of a Type I error at $\alpha$.
+
