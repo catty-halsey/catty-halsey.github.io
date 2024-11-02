@@ -11,3 +11,5 @@ To construct a hypothesis, we first decide the null hypothesis $H_0$ against the
 
 Let we clarify some motivation of randomized test: When $0 < \phi(X) < 1$, it indicates that the decision to reject $H_0$ is not absolute—it is probabilistic. Specifically, if $\phi(X)$ returns a value $p$, we reject $H_0$ with probability $p$. The rationale is that, in the gray area, we recognize that the evidence against $H_0$ is not strong enough to guarantee rejection, but is sufficient to warrant a controlled chance of rejection. The Neyman-Pearson test is a classical randomized test.In the Neyman-Pearson test, when the likelihood ratio $\Lambda(x)$ equals some critical constant $k$, it indicates that the observed data is neither strongly supporting the null hypothesis $H_0$ nor the alternative hypothesis $H_1$. In this situation, you are at the threshold of making a decision.
 
+
+
