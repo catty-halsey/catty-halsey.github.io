@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Regression"
+title: "Exponential family"
 author: "Ziyan Li"
 categories: journal
 tags: [documentation, sample]
