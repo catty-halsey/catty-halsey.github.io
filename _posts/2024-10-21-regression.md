@@ -6,8 +6,6 @@ categories: journal
 tags: [documentation, sample]
 ---
 
-Hello world $\rho$
-
 Before constructing a regression model, we first need to test whether the variables are correlated. After obtaining the correlation value, we further want to determine how much we can rely on this value. Like other statistical tests, there are two common tests for correlation.
 
 ### Pearson Correlation
