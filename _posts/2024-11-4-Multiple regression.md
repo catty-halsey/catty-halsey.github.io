@@ -1,11 +1,20 @@
+# Multiple Linear Regression
+
+**Author**: Ziyan Li  
+**Categories**: journal  
+**Tags**: documentation, sample  
+
 ---
-layout: post
-title: "Multiple Linear Regression"
-author: "Ziyan Li"
-categories: journal
-tags: [documentation, sample]
+
+## Table of Contents
+- [Estimated Beta in Simple and Multiple Regression](#estimated-hatbeta-in-simple-and-multiple-regression)
+- [Uniqueness of Estimated Beta in Multiple Linear Regression](#Uniqueness-of-Estimatied-Beta-in-Multiple-Linear-Regression)
+- [Accuracy of](#accuracy-of)
+
+
 ---
-## Coefficient in simple and multiple regression
+
+## Estimated $\hat{beta}$ in simple and multiple regression
 First, we need to emphaize that the coefficient using regression through simple linear regression and multiple regression are different in general. More specific, using our observed data $X$ and $Y$, if we have $y=X^{(j)}\bar{\beta_j}$ from simple regression and $y=X\hat{\beta}$ from multiple, where $X^{(j)}$ is the j-th column of $X$, then $\bar{\beta_j}$ and $\hat{\beta}(j)$ are not equal in general. In particular, when predictors are orthogonal, it holds that:
 
 - $x_{\cdot,j}^T x_{\cdot,k} = 0$ for all $j \neq k$
@@ -21,22 +30,20 @@ This results in the same outcome as performing separate simple regressions for e
 
 Then, we back to the general cases. When the coefficients from different regression are different, we are interested in which one is more reliable and which can be used to intepret as the total cause effect of $X_j$ on Y, for each $j \in {1,2,\cdots,p}$. The concept of **valid adjustment** solves this problem. 
 
-Consider a linear, zero-mean Gaussian Structural Causal Model (SCM), where all assignments are linear, and the noise terms are normally distributed with zero mean.
-1. The vector $(Y, X, Z)$ has a (zero mean) Gaussian distribution with 
-   $$
-   \mathbb{E}[Y \mid X = x, Z = z] = ax + b^z
-   $$
-   (no proof necessary).
+Consider a linear, zero-mean Gaussian Structural Causal Model (SCM), where all assignments are linear, and the noise terms are normally distributed with zero mean. The vector $(Y, X, Z)$ has a (zero mean) Gaussian distribution with 
 
-2. Assume now that $Z$ is a valid adjustment set for the causal effect from $X$ to $Y$.
+$$
+\mathbb{E}[Y \mid X = x, Z = z] = ax + b^z
+$$
 
-3. Prove that 
-   $$
-   \frac{\partial}{\partial x} \mathbb{E}_{C; \, \text{do}(X := x)}[Y] = a.
-   $$
+Assume now that $Z$ is a valid adjustment set for the causal effect from $X$ to $Y$, then we have 
+   
+$$
+\frac{\partial}{\partial x} \mathbb{E}_{C; \, \text{do}(X := x)}[Y] = a.
+$$
 
 
-## Uniquenss of Estimatied Beta in Multiple Linear Regression
+## Uniqueness of Estimatied Beta in Multiple Linear Regression
 
 When estimating the parameter vector $\beta$ in multiple linear regression, the dimensions of the matrices $X$ and $Y$ play a crucial role. Before discussing the behavior of the estimated coefficient vector $\hat{\beta}$, we recall the **Rank-Nullity Theorem** from linear algebra. This theorem states that for any linear transformation $X: \mathbb{R}^p \rightarrow \mathbb{R}^n$, the sum of the dimension of the image of $X$ (known as the rank of $X$) and the dimension of the kernel of $X$ (known as the nullity of $X$) equals the number of columns $p$ of the matrix $X$. This relationship can be expressed mathematically as:
 
@@ -71,3 +78,5 @@ Thus, the interplay between the number of columns and rows in $X$ significantly 
 
 - In the case where $n \geq p$, if $X$ has full rank $p$, then the estimated coefficient vector $\hat{\beta}$ has a unique solution if and only if $\text{rank}(X) = p$, which implies that $\text{nullity}(X) = 0$.
 - Conversely, when $n < p$, it follows that $\text{rank}(X) \leq n < p$, resulting in $\text{nullity}(X) > 0$. Therefore, in this scenario, $\hat{\beta}$ can never have a unique solution.
+
+## Accuracy of 
