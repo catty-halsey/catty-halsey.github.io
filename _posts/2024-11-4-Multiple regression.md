@@ -9,12 +9,12 @@
 ## Table of Contents
 - [Estimated Beta in Simple and Multiple Regression](#estimated-hatbeta-in-simple-and-multiple-regression)
 - [Uniqueness of Estimated Beta in Multiple Linear Regression](#Uniqueness-of-Estimatied-Beta-in-Multiple-Linear-Regression)
-- [Accuracy of](#accuracy-of)
+- [Accuracy](#Accuracy-of-estimation)
 
 
 ---
 
-## Estimated $\hat{beta}$ in simple and multiple regression
+## Estimated $\hat{\beta}$ in simple and multiple regression
 First, we need to emphaize that the coefficient using regression through simple linear regression and multiple regression are different in general. More specific, using our observed data $X$ and $Y$, if we have $y=X^{(j)}\bar{\beta_j}$ from simple regression and $y=X\hat{\beta}$ from multiple, where $X^{(j)}$ is the j-th column of $X$, then $\bar{\beta_j}$ and $\hat{\beta}(j)$ are not equal in general. In particular, when predictors are orthogonal, it holds that:
 
 - $x_{\cdot,j}^T x_{\cdot,k} = 0$ for all $j \neq k$
@@ -79,4 +79,14 @@ Thus, the interplay between the number of columns and rows in $X$ significantly 
 - In the case where $n \geq p$, if $X$ has full rank $p$, then the estimated coefficient vector $\hat{\beta}$ has a unique solution if and only if $\text{rank}(X) = p$, which implies that $\text{nullity}(X) = 0$.
 - Conversely, when $n < p$, it follows that $\text{rank}(X) \leq n < p$, resulting in $\text{nullity}(X) > 0$. Therefore, in this scenario, $\hat{\beta}$ can never have a unique solution.
 
-## Accuracy of 
+## Accuracy of estimation 
+
+In practice, we have two assumptions about the error $\epsilon$. 
+
+- Assumption 1: $\epsilon \sim N(0,\sigma^2 \text{Id)}$.
+- Assumption 2: Gauss-Markov condition.i.e, $\cov(\epsilon)=\sigma^2 \text{Id}$.
+Remark: The Gauss-Markov condition assume the $\epsilon_i \perp \epsilon_j$ for $i \neq j$ and does not specify the specific distribution the error follows, which is a general scenario.
+
+Since the Gauss-Markov condition include the normality assumption, we discuss all the behaviour of our estimation under the Markov-condition.
+
+
