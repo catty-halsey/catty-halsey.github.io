@@ -5,6 +5,37 @@ author: "Ziyan Li"
 categories: journal
 tags: [documentation, sample]
 ---
+## Coefficient in simple and multiple regression
+First, we need to emphaize that the coefficient using regression through simple linear regression and multiple regression are different in general. More specific, using our observed data $X$ and $Y$, if we have $y=X^{(j)}\bar{\beta_j}$ from simple regression and $y=X\hat{\beta}$ from multiple, where $X^{(j)}$ is the j-th column of $X$, then $\bar{\beta_j}$ and $\hat{\beta}(j)$ are not equal in general. In particular, when predictors are orthogonal, it holds that:
+
+- $x_{\cdot,j}^T x_{\cdot,k} = 0$ for all $j \neq k$
+- Consequently, $X^T X = \text{diag} \left( \sum_{i=1}^n x_{i,1}^2, \dots, \sum_{i=1}^n x_{i,p}^2 \right)$
+
+Given these properties, the calculation of $\hat{\beta}$ simplifies. Specifically:
+
+$$
+\hat{\beta}_j = \left( X^T X \right)^{-1} X^T Y_j = \frac{\sum_{i=1}^n x_{i,j} y_i}{\sum_{i=1}^n x_{i,j}^2} = \frac{\hat{\sigma}_{x_j,y}}{\hat{\sigma}_{x_j}^2}
+$$
+
+This results in the same outcome as performing separate simple regressions for each predictor $x_j$ on the response $Y$. 
+
+Then, we back to the general cases. When the coefficients from different regression are different, we are interested in which one is more reliable and which can be used to intepret as the total cause effect of $X_j$ on Y, for each $j \in {1,2,\cdots,p}$. The concept of **valid adjustment** solves this problem. 
+
+Consider a linear, zero-mean Gaussian Structural Causal Model (SCM), where all assignments are linear, and the noise terms are normally distributed with zero mean.
+1. The vector $(Y, X, Z)$ has a (zero mean) Gaussian distribution with 
+   $$
+   \mathbb{E}[Y \mid X = x, Z = z] = ax + b^z
+   $$
+   (no proof necessary).
+
+2. Assume now that $Z$ is a valid adjustment set for the causal effect from $X$ to $Y$.
+
+3. Prove that 
+   $$
+   \frac{\partial}{\partial x} \mathbb{E}_{C; \, \text{do}(X := x)}[Y] = a.
+   $$
+
+
 ## Uniquenss of Estimatied Beta in Multiple Linear Regression
 
 When estimating the parameter vector $\beta$ in multiple linear regression, the dimensions of the matrices $X$ and $Y$ play a crucial role. Before discussing the behavior of the estimated coefficient vector $\hat{\beta}$, we recall the **Rank-Nullity Theorem** from linear algebra. This theorem states that for any linear transformation $X: \mathbb{R}^p \rightarrow \mathbb{R}^n$, the sum of the dimension of the image of $X$ (known as the rank of $X$) and the dimension of the kernel of $X$ (known as the nullity of $X$) equals the number of columns $p$ of the matrix $X$. This relationship can be expressed mathematically as:
