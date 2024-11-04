@@ -87,6 +87,17 @@ In practice, we have two assumptions about the error $\epsilon$.
 - Assumption 2: Gauss-Markov condition.i.e, $\cov(\epsilon)=\sigma^2 \text{Id}$.
 Remark: The Gauss-Markov condition assume the $\epsilon_i \perp \epsilon_j$ for $i \neq j$ and does not specify the specific distribution the error follows, which is a general scenario.
 
-Since the Gauss-Markov condition include the normality assumption, we discuss all the behaviour of our estimation under the Markov-condition.
+Since the Gauss-Markov condition include the normality assumption, we discuss all the behaviour of our estimator under the Markov-condition. 
+
+### Estimated Beta
+- Unbaised estimator: $E(\hat{\beta}) = \beta$ 
+- $\text{Cov}(\hat{\beta}) = \sigma^2 (X^T X)^{-1}$.
+
+Then, we are interested in how small the variance of $\hat{\beta}$ compared to other estimator, then we have two results.
+- Under the Markov-condition, $\hat{\beta}$ has the smallest vairance among all linear unbiased estimator.
+- Under normality error, $\hat{\beta}$ has the smallest vairance among all unbiased estimator (**UMVU**).
+Remark:
+- Both assumption based on rank of X has the full rank $p$ such $p<n$. When this condition violate, even the asssumption holds, j-th column of $X$ can be linear combination of other columns, which will explode the vairance of $\hat{\beta}$ by **VIF**.
+
 
 
