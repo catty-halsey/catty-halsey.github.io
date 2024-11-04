@@ -29,7 +29,7 @@ $$
 \Lambda(X) = \frac{L(X | \theta_1)}{L(X | \theta_0)}
 $$
 
-where $L(X | \theta)$ is the likelihood of observing $X$ given parameter $\theta$.
+where $L(X|\theta)$ is the likelihood of observing $X$ given parameter $\theta$.
 
 The Neyman-Pearson lemma states that the most powerful test for a given significance level $\alpha$ has the form:
 
@@ -71,7 +71,7 @@ $$
 \Lambda(X) = \frac{L(X | \theta_1)}{L(X | \theta_0)}
 $$
 
-where $L(X | \theta)$ is the likelihood of observing $X$ given parameter $\theta$.
+where $L(X|\theta)$ is the likelihood of observing $X$ given parameter $\theta$.
 
 The Neyman-Pearson lemma states that the most powerful test for a given significance level $\alpha$ has the form:
 
