@@ -99,5 +99,5 @@ Then, we are interested in how small the variance of $\hat{\beta}$ compared to o
 Remark:
 - Both assumption based on rank of X has the full rank $p$ such $p<n$. When this condition violate, even the asssumption holds, j-th column of $X$ can be linear combination of other columns, which will explode the vairance of $\hat{\beta}$ by **VIF**.
 
-
-
+### Estimated Y
+- Unbiased estimator: E
