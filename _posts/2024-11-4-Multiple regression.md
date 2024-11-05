@@ -185,23 +185,11 @@ $$
 \frac{\hat{Y}_j - Y_j}{\hat{\sigma} \sqrt{P_{jj}}} \sim t_{n - p}.
 $$
 
-The corresponding $(1 - \alpha)$-level confidence interval for $Y$ is:
+The corresponding $(1 - \alpha)$-level confidence interval for $Y$ is: $\hat{Y} \pm t_{\alpha/2; n - p} \cdot \hat{\sigma_1}$, where $\hat{\sigma}_1 = \hat{\sigma} \sqrt{P_{jj}}$.
 
-$$
-\left[\hat{Y}_j - t_{\alpha/2; n - p} \hat{\sigma}_1, \, \hat{Y}_j + t_{\alpha/2; n - p} \hat{\sigma}_1 \right],
-$$
+For the prediction interval, we consider a new observation $Y_0 = X_0^T \beta + \epsilon$, where $X_0$ is a new predictor vector and $\epsilon$ has mean zero and variance $\sigma^2 \text{Id}$. The variance of $\hat{Y}_0 - Y_0$ becomes $\sigma^2 + X_0^T (X^TX)^{-1} X_0$, which is larger than $\text{Var}(\hat{Y} - Y)$. Consequently, the prediction interval for $Y$ is wider than the confidence interval at the same confidence level, reflecting the additional variance introduced by the new observation $X_0$.
 
-where $\hat{\sigma}_1 = \hat{\sigma} \sqrt{P_{jj}}$.
-
-For the prediction interval, we consider a new observation $Y_0 = X_0^T \beta + \epsilon$, where $X_0$ is a new predictor vector and $\epsilon$ has mean zero and variance $\sigma^2 \text{Id}$. The variance of $\hat{Y}_0 - Y_0$ becomes $\sigma^2 + X_0^T (X^TX)^{-1} X_0$, which is larger than $\operatorname{Var}(\hat{Y} - Y)$. Consequently, the prediction interval for $Y$ is wider than the confidence interval at the same confidence level, reflecting the additional variance introduced by the new observation $X_0$.
-
-Thus, the prediction interval is:
-
-$$
-\left[\hat{Y}_j - t_{\alpha/2; n - p} \hat{\sigma}_2, \, \hat{Y}_j + t_{\alpha/2; n - p} \hat{\sigma}_2 \right],
-$$
-
-where $\hat{\sigma}_2 = \hat{\sigma} \sqrt{1 + P_{jj}}$.
+Thus, the prediction interval is: $\hat{Y} \pm t_{\alpha/2; n - p} \cdot \hat{\sigma_2}$, where $\hat{\sigma}_2 = \hat{\sigma} \sqrt{1 + P_{jj}}$.
 
 The additional variance in the prediction interval arises because we are using the estimated $\beta$ from the regression model, which was derived from the original data $X$ and $Y$. The inclusion of the new data $X_0$ introduces additional variability, hence the wider interval.
 ### Estimated error 
