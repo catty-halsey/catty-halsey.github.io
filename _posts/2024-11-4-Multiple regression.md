@@ -149,14 +149,61 @@ where \(f\) is the probability density function for the error distribution.
 #### Distribution of estimated beta
 
 #### test of estimated beta 
-We also interested in the 
+We are interested in whether the coefficient from the linear regression represents the true effect of $X_j$ on $Y$. To investigate this, we introduce a hypothesis test for $\hat{\beta}$. The null hypothesis: $H_0: \beta_j =0$ agianst the alternative hypothesis $\beta_j \neq 0$. 
 
+Assume the errors follow a normal distribution with mean zero and variance $\sigma^2 \text{Id}$, so that 
+$$
+\hat{\beta} \sim N(\beta, \sigma^2 (X^TX)^{-1}).
+$$
+We then have
+$$
+\hat{\sigma} = \frac{\sum_{i=1}^n \epsilon_i^2}{n - p}
+$$
+and
+$$
+\frac{\sum_{i=1}^n \epsilon_i^2}{\sigma^2} \sim \chi^2_{n - p},
+$$
+where $\epsilon \sim N(0, \sigma^2)$.
+
+This allows us to construct the test statistic:
+$$
+\frac{\hat{\beta}_j - \beta_j}{\hat{\sigma} \sqrt{(X^TX)^{-1}_{jj}}} \sim t_{n - p}.
+$$
+
+In this construction, we use the property $\hat{\beta} \perp \hat{Y}$ and $\frac{W}{\sqrt{V/n}} \sim t_n$if $W \perp V$ with $W \sim N(0,1)$ and $V \sim \chi^2_n$. Then, if we get the p-value is less then significant level, then we reject the null hypotheis.i.e, $\beta_j \neq 0$. 
 
 ### Estimated Y
 - **unbiased predictions** (in the sense that $\mathbb{E}[\hat{Y}] = X \beta$ = \mathbb{E}[Y]), the predicted value $\hat{Y}$ is **not generally an unbiased estimator of the actual observed value $Y$**. While $\hat{Y}$ gives an unbiased prediction for the mean outcome, it is not an unbiased estimator of each observed 
 $𝑌$ due to the inherent variability from the error term.
 - $\text{Cov}(\hat{Y}) = \sigma^2 P$, where $P$ is projection matrix as $X(X^TX)^-1X^T$.
 
+Using a similar approach to the construction of the test statistic for $\hat{\beta}$, we can construct a test statistic for $\hat{Y}$. Instead of testing whether $\hat{Y}$ equals a specific value, we are primarily interested in deriving a **confidence interval** for $Y$, which provides an approximation for the expected value of $Y$. Additionally, we aim to construct a **prediction interval** for $Y$, which captures the range where a new observation $Y$ is likely to fall.
+
+We begin by constructing the test statistic under the null hypothesis $\mu = \mu_i$, where $\hat{Y} = PY$ and $\hat{Y}_j \sim N(\mu_j, \sigma^2 P_{jj})$. The test statistic is then given by:
+
+$$
+\frac{\hat{Y}_j - Y_j}{\hat{\sigma} \sqrt{P_{jj}}} \sim t_{n - p}.
+$$
+
+The corresponding $(1 - \alpha)$-level confidence interval for $Y$ is:
+
+$$
+\left[\hat{Y}_j - t_{\alpha/2; n - p} \hat{\sigma}_1, \, \hat{Y}_j + t_{\alpha/2; n - p} \hat{\sigma}_1 \right],
+$$
+
+where $\hat{\sigma}_1 = \hat{\sigma} \sqrt{P_{jj}}$.
+
+For the prediction interval, we consider a new observation $Y_0 = X_0^T \beta + \epsilon$, where $X_0$ is a new predictor vector and $\epsilon$ has mean zero and variance $\sigma^2 \text{Id}$. The variance of $\hat{Y}_0 - Y_0$ becomes $\sigma^2 + X_0^T (X^TX)^{-1} X_0$, which is larger than $\operatorname{Var}(\hat{Y} - Y)$. Consequently, the prediction interval for $Y$ is wider than the confidence interval at the same confidence level, reflecting the additional variance introduced by the new observation $X_0$.
+
+Thus, the prediction interval is:
+
+$$
+\left[\hat{Y}_j - t_{\alpha/2; n - p} \hat{\sigma}_2, \, \hat{Y}_j + t_{\alpha/2; n - p} \hat{\sigma}_2 \right],
+$$
+
+where $\hat{\sigma}_2 = \hat{\sigma} \sqrt{1 + P_{jj}}$.
+
+The additional variance in the prediction interval arises because we are using the estimated $\beta$ from the regression model, which was derived from the original data $X$ and $Y$. The inclusion of the new data $X_0$ introduces additional variability, hence the wider interval.
 ### Estimated error 
 - Unbiased estimator ($\hat{\epsilon}=Y-\hat{Y}$): $\mathbb{E}[\hat{\epsilon}]=\mathbb{E}[\epsilon]=0$.
 - $\text{Cov}(\hat{\epsilon}) = \sigma^2 M$, where $M$ is residual maker matrix as $1-X(X^TX)^{-1}X^T$.
