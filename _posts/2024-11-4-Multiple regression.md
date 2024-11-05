@@ -113,7 +113,7 @@ where $b$ is the scale parameter. In this case, the Maximum Likelihood Estimator
 
 In the next, we choose MLE estimator to compare with OLS estimator when the error follows heavy tails distribution.
 
-### OLS vs. MLE
+#### OLS vs. MLE
 
 1. **Objective Function**:
    - **OLS (Ordinary Least Squares)**: Minimizes the Residual Sum of Squares (RSS), which is sensitive to extreme values because it squares the residuals:
