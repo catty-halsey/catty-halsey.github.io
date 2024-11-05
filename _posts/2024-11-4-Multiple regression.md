@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Two sample test"
+title: "Multiple regression"
 author: "Ziyan Li"
 categories: journal
 tags: [documentation, sample]
