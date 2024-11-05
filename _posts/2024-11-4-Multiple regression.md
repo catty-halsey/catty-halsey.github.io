@@ -10,6 +10,12 @@ tags: [documentation, sample]
 - [Estimated Beta in Simple and Multiple Regression](#estimated-hatbeta-in-simple-and-multiple-regression)
 - [Uniqueness of Estimated Beta in Multiple Linear Regression](#Uniqueness-of-Estimatied-Beta-in-Multiple-Linear-Regression)
 - [Accuracy](#Accuracy-of-estimation)
+  - [Estimated Beta](#Estimated-Beta)
+    - [OLS vs. MLE](#OLS-vs.-MLE)
+    - [Distribution of estimated beta](#Distribution-of-estimated-beta)
+    - [test of estimated beta](#test-of-estimated-beta)
+  - [Estimated Y](#Estimated-Y)
+  
 
 
 ---
@@ -139,6 +145,11 @@ where \(f\) is the probability density function for the error distribution.
 
 3. **Heavier Tails**: 
    - When the error distribution has heavier tails (like the t-distribution or Laplace distribution), extreme residuals become more probable. OLS can yield high variance in such scenarios because of its squaring effect on errors, while MLE, by virtue of its likelihood function, mitigates this sensitivity through its structure.
+
+#### Distribution of estimated beta
+
+#### test of estimated beta 
+We also interested in the 
 
 
 ### Estimated Y
