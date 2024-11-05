@@ -1,9 +1,9 @@
-# Multiple Linear Regression
-
-**Author**: Ziyan Li  
-**Categories**: journal  
-**Tags**: documentation, sample  
-
+---
+layout: post
+title: "Two sample test"
+author: "Ziyan Li"
+categories: journal
+tags: [documentation, sample]
 ---
 
 ## Table of Contents
