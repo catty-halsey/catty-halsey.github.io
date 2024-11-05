@@ -96,8 +96,64 @@ Since the Gauss-Markov condition include the normality assumption, we discuss al
 Then, we are interested in how small the variance of $\hat{\beta}$ compared to other estimator, then we have two results.
 - Under the Markov-condition, $\hat{\beta}$ has the smallest vairance among all linear unbiased estimator.
 - Under normality error, $\hat{\beta}$ has the smallest vairance among all unbiased estimator (**UMVU**).
+
 Remark:
-- Both assumption based on rank of X has the full rank $p$ such $p<n$. When this condition violate, even the asssumption holds, j-th column of $X$ can be linear combination of other columns, which will explode the vairance of $\hat{\beta}$ by **VIF**.
+- Both assumption based on rank of X has the full rank $p$ such $p<n$. When this condition violate, even the asssumption holds, j-th column of $X$ can be linear combination of other columns, which will explode the vairance of $\hat{\beta}$ due to the extremely increases of **VIF**.
+- Under non-normal errors, there exists lots of estimators which have smaller variance than OLS. In particular, when error follow some distributions with heavy tails, the OLS estimator can have high variance due to its sensitivity to large deviations. The LAD estimator (which minimizes absolute deviations) is more robust to these large residuals, resulting in a smaller variance for the estimate of $\beta$.
+
+For instance, suppose $\epsilon$ follows a Laplace distribution (also known as the double-exponential distribution), which has heavier tails than a normal distribution.
+
+The Laplace distribution has the form:
+
+$$
+f(\epsilon) = \frac{1}{2b} \exp\left(-\frac{|\epsilon|}{b}\right),
+$$
+
+where $b$ is the scale parameter. In this case, the Maximum Likelihood Estimator (MLE) for $\beta$ corresponds to minimizing the sum of absolute residuals rather than the sum of squared residuals, which is done in Least Absolute Deviations (LAD) regression. This is because the Laplace distribution maximizes the likelihood when we minimize the absolute differences, rather than the squared differences. Here is a visualization from R, we set b=1,sample size=100, replications=10000. The red region is the distribution of MLE of $\beta$ and the blue region is the distribution of OLS of $\beta$, and the dashed line is the true beta 2. We can observed that the MLE estimator are more dense near the mean and so has smaller variance. Additionally, the mean of MLE is also closer to the true beta.
+
+In the next, we choose MLE estimator to compare with OLS estimator when the error follows heavy tails distribution.
+
+### OLS vs. MLE
+
+1. **Objective Function**:
+   - **OLS (Ordinary Least Squares)**: Minimizes the Residual Sum of Squares (RSS), which is sensitive to extreme values because it squares the residuals:
+
+$$
+\text{RSS} = \sum (Y_i - \hat{Y}_i)^2.
+$$
+
+When there are large residuals (outliers), squaring these values disproportionately increases the RSS, leading to higher variance in the estimates of \(\beta\).
+
+   - **MLE (Maximum Likelihood Estimation)**: Focuses on maximizing the likelihood function, which is often transformed into minimizing the negative log-likelihood. In the case of non-normal errors (like those following a t-distribution), the likelihood function decays more slowly for extreme values compared to the normal distribution:
+
+$$
+L(\beta) = \prod f(Y_i | X_i, \beta),
+$$
+
+where \(f\) is the probability density function for the error distribution.
+
+2. **Sensitivity to Outliers**:
+   - **OLS Sensitivity**: Because OLS uses squared errors, it is highly sensitive to outliers. A few extreme values can skew the estimates significantly, increasing the variance of the parameter estimates.
+
+   - **MLE Robustness**: The log transformation in MLE effectively "down-weights" the influence of extreme values. This property helps MLE to maintain more stable estimates even in the presence of outliers or heavy tails, leading to lower variance for the estimated parameters.
+
+3. **Heavier Tails**: 
+   - When the error distribution has heavier tails (like the t-distribution or Laplace distribution), extreme residuals become more probable. OLS can yield high variance in such scenarios because of its squaring effect on errors, while MLE, by virtue of its likelihood function, mitigates this sensitivity through its structure.
+
 
 ### Estimated Y
-- Unbiased estimator ($X\hat{\beta}$) of $Y$: $\text{E}[\hat{Y}]$=
+- **unbiased predictions** (in the sense that $\mathbb{E}[\hat{Y}] = X \beta$ = \mathbb{E}[Y]), the predicted value $\hat{Y}$ is **not generally an unbiased estimator of the actual observed value $Y$**. While $\hat{Y}$ gives an unbiased prediction for the mean outcome, it is not an unbiased estimator of each observed 
+$𝑌$ due to the inherent variability from the error term.
+- $\text{Cov}(\hat{Y}) = \sigma^2 P$, where $P$ is projection matrix as $X(X^TX)^-1X^T$.
+
+### Estimated error 
+- Unbiased estimator ($\hat{\epsilon}=Y-\hat{Y}$): $\mathbb{E}[\hat{\epsilon}]=\mathbb{E}[\epsilon]=0$.
+- $\text{Cov}(\hat{\epsilon}) = \sigma^2 M$, where $M$ is residual maker matrix as $1-X(X^TX)^{-1}X^T$.
+
+
+
+
+
+
+
+
