@@ -98,6 +98,25 @@ Since the Gauss-Markov condition include the normality assumption, we discuss al
 ### Estimated Beta
 - Unbaised estimator $(X^TX)^{-1}X^TY$: $E(\hat{\beta}) = \beta$ 
 - $\text{Cov}(\hat{\beta}) = \sigma^2 (X^T X)^{-1}$.
+- The variance of $\hat{\beta_j}$, the $j$-th coefficient estimator in a multiple regression, can be expressed in terms of the variance inflation factor (VIF), the error variance $\sigma^2$, and the variance of the predictor $X_j$. Here’s the relationship:
+
+$$
+\text{Var}(\hat{\beta_j}) = \sigma^2 \cdot \frac{VIF_j}{\text{Var}(X_j)}
+$$
+
+where:
+
+- $\sigma^2$ is the error variance.
+- $\text{Var}(X_j)$ is the variance of the predictor $X_j$.
+- $VIF_j$ (Variance Inflation Factor) is a measure of how much the variance of $\hat{\beta_j}$ is inflated due to the correlation among predictors. It’s defined as:
+  
+$$
+VIF_j = \frac{1}{1 - R_j^2}
+$$
+
+  where $R_j^2$ is the $R^2$ value from regressing $X_j$ on all other predictors in the model.
+
+This formulation reflects how multicollinearity (captured by the VIF) affects the precision of $\hat{\beta_j}$. A high $VIF_j$ implies greater variance in $\hat{\beta_j}$, indicating instability in the estimate due to correlations among predictors. This result will play an important result in the hypotheisis testing of $\hat{\beta}$.
 
 Then, we are interested in how small the variance of $\hat{\beta}$ compared to other estimator, then we have two results.
 - Under the Markov-condition, $\hat{\beta}$ has the smallest vairance among all linear unbiased estimator.
@@ -128,7 +147,7 @@ $$
 \text{RSS} = \sum (Y_i - \hat{Y}_i)^2.
 $$
 
-When there are large residuals (outliers), squaring these values disproportionately increases the RSS, leading to higher variance in the estimates of \(\beta\).
+When there are large residuals (outliers), squaring these values disproportionately increases the RSS, leading to higher variance in the estimates of $\beta$.
 
    - **MLE (Maximum Likelihood Estimation)**: Focuses on maximizing the likelihood function, which is often transformed into minimizing the negative log-likelihood. In the case of non-normal errors (like those following a t-distribution), the likelihood function decays more slowly for extreme values compared to the normal distribution:
 
@@ -136,7 +155,7 @@ $$
 L(\beta) = \prod f(Y_i | X_i, \beta),
 $$
 
-where \(f\) is the probability density function for the error distribution.
+where $f$ is the probability density function for the error distribution.
 
 2. **Sensitivity to Outliers**:
    - **OLS Sensitivity**: Because OLS uses squared errors, it is highly sensitive to outliers. A few extreme values can skew the estimates significantly, increasing the variance of the parameter estimates.
@@ -147,6 +166,7 @@ where \(f\) is the probability density function for the error distribution.
    - When the error distribution has heavier tails (like the t-distribution or Laplace distribution), extreme residuals become more probable. OLS can yield high variance in such scenarios because of its squaring effect on errors, while MLE, by virtue of its likelihood function, mitigates this sensitivity through its structure.
 
 #### Distribution of estimated beta
+
 
 #### test of estimated beta 
 We are interested in whether the coefficient from the linear regression represents the true effect of $X_j$ on $Y$. To investigate this, we introduce a hypothesis test for $\hat{\beta}$. The null hypothesis: $H_0: \beta_j =0$ agianst the alternative hypothesis $\beta_j \neq 0$. 
@@ -179,6 +199,10 @@ $$
 
 In this construction, we use the property $\hat{\beta} \perp \hat{Y}$ and $\frac{W}{\sqrt{V/n}} \sim t_n$ if $W \perp V$ with $W \sim N(0,1)$ and $V \sim \chi^2_n$. Then, if we get the p-value is less then significant level, then we reject the null hypotheis.i.e, $\beta_j \neq 0$. 
 
+Recall how **VIF** and variance of $X_j$ affect the variance of $\hat{\beta_j}$, $(X^TX_{jj})^{-1}$ can be rewrite as $\frac{VIF_j}{\text{Var}(X_j)}$. Under high correlation among $X_j$, $VIF_j$ and $(X^TX_{jj})^{-1}$ explode and therefore the t test statistics extremely decrease, which is closer to zero and hard to be rejected. However, we we drop one or more explantory variable, the significance might change, because we reduce the colinearity and decrease the **VIF**.The similar logic also applies to the variance within the $X_j$. And this problem can be solved by **F-test**, we will introduce later.
+
+
+
 ### Estimated Y
 - **unbiased predictions** (in the sense that $\mathbb{E}[\hat{Y}] = X \beta$ = \mathbb{E}[Y]), the predicted value $\hat{Y}$ is **not generally an unbiased estimator of the actual observed value $Y$**. While $\hat{Y}$ gives an unbiased prediction for the mean outcome, it is not an unbiased estimator of each observed 
 $𝑌$ due to the inherent variability from the error term.
@@ -196,7 +220,7 @@ The corresponding $(1 - \alpha)$-level confidence interval for $Y$ is: $\hat{Y} 
 
 For the prediction interval, we consider a new observation $Y_0 = X_0^T \beta + \epsilon$, where $X_0$ is a new predictor vector and $\epsilon$ has mean zero and variance $\sigma^2 \text{Id}$. The variance of $\hat{Y}_0 - Y_0$ becomes $\sigma^2 + X_0^T (X^TX)^{-1} X_0$, which is larger than $\text{Var}(\hat{Y} - Y)$. Consequently, the prediction interval for $Y$ is wider than the confidence interval at the same confidence level, reflecting the additional variance introduced by the new observation $X_0$.
 
-Thus, the prediction interval is: $\hat{Y} \pm t_{\alpha/2; n - p} \cdot \hat{\sigma_2}$, where $\hat{\sigma_2} = \hat{\sigma} \sqrt{1 + P_{jj}}$.
+Thus, the prediction interval is: $\hat{Y} \pm t_{\alpha/2; n - p} \cdot \hat{\sigma_2}$, where $\hat{\sigma_2} = \hat{\sigma} \sqrt{1 +  X_0^T (X^TX)^{-1} X_0}$.
 
 The additional variance in the prediction interval arises because we are using the estimated $\beta$ from the regression model, which was derived from the original data $X$ and $Y$. The inclusion of the new data $X_0$ introduces additional variability, hence the wider interval.
 ### Estimated error 
