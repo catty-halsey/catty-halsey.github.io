@@ -13,6 +13,25 @@ tags: [documentation, sample]
 
 The goal is to test whether the observed sequence $X_1, X_2, \dots$ follows distribution $P$ (under $H_0$) or distribution $Q$ (under $H_1$), by constructing a sequence of bets or payoffs $S_t(X_t)$ that has an expected value of 1 under the null hypothesis $H_0$.
 
+### Constructing sequential tests
+When we construct the sequential tests, the most important is to find a supermartigale. A supermartigale $M_t$ under $P_{\theta_0}$ satifies the Ville's inequality as following:
+
+$$
+P_{\theta_0}(M_t>1/\alpha)<\alpha
+$$
+
+Then, if we define a sequential test as 
+
+$$
+\phi_n(X)=1; \quad M_k>1/\alpha \quad \text{for some} \quad k\leq n
+$$
+
+Then, such test automatically control the type I error.
+
+Remark:
+- Note that each supermartigale $M_t$ is designed for specific $P_{\theta_0}$. For a same martingale $M_t$, it becomes a supermartigale under null hypothesis and submartingale under alternative hypothesis, vice versa.
+  
+
 ### Requirements for the Payoff Function
 
 To set up this testing framework effectively, we require the payoff function $S_t(X_t)$ to satisfy the following condition under $H_0$:
