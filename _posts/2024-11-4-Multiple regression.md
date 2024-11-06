@@ -13,7 +13,7 @@ tags: [documentation, sample]
   - [Estimated Beta](#Estimated-Beta)
     - [OLS vs. MLE](#OLS-vs.-MLE)
     - [Distribution of estimated beta](#Distribution-of-estimated-beta)
-    - [test of estimated beta](#test-of-estimated-beta)
+    - [Test of estimated beta](#Test-of-estimated-beta)
   - [Estimated Y](#Estimated-Y)
   
 
@@ -168,7 +168,7 @@ where $f$ is the probability density function for the error distribution.
 #### Distribution of estimated beta
 
 
-#### test of estimated beta 
+#### Test of estimated beta 
 We are interested in whether the coefficient from the linear regression represents the true effect of $X_j$ on $Y$. To investigate this, we introduce a hypothesis test for $\hat{\beta}$. The null hypothesis: $H_0: \beta_j =0$ agianst the alternative hypothesis $\beta_j \neq 0$. 
 
 Assume the errors follow a normal distribution with mean zero and variance $\sigma^2 \text{Id}$, so that 
