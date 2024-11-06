@@ -1,1 +1,1 @@
-
+The NP-test is design for the simple test, which is most powerful test for the simple test. And when the X under the null and altervative hypothesis is exponential families, we can extend the NP test to the one-side test, which still the most powerful test. However, for the two-sided test, the NP-test does not exist. or does it exists? The UMPU is the most powerful test for the two-sided test.
