@@ -2,7 +2,7 @@
 layout: post
 title: "Multiple regression"
 author: "Ziyan Li"
-categories: journal
+categories: tutorials
 tags: [documentation, sample]
 ---
 
@@ -15,6 +15,7 @@ tags: [documentation, sample]
     - [Distribution of estimated beta](#Distribution-of-estimated-beta)
     - [Test of estimated beta](#Test-of-estimated-beta)
   - [Estimated Y](#Estimated-Y)
+  - [Estimated error](#Estimated-error)
   
 
 
@@ -186,10 +187,10 @@ $$
 and
 
 $$
-\frac{\sum_{i=1}^n \epsilon_i^2}{\sigma^2} \sim \chi^2_{n-p},
+\frac{\sum_{i=1}^n \hat{\epsilon_i}^2}{\sigma^2} \sim \chi^2_{n-p},
 $$
 
-where $\epsilon \sim N(0, \sigma^2)$.
+where $\epsilon \sim N(0, \sigma^2M)$ and $M$ is residual maker matrix, denoted as $1-X(X^TX)^{-1}X$. 
 
 This allows us to construct the test statistic:
 
@@ -223,9 +224,25 @@ For the prediction interval, we consider a new observation $Y_0 = X_0^T \beta + 
 Thus, the prediction interval is: $\hat{Y} \pm t_{\alpha/2; n - p} \cdot \hat{\sigma_2}$, where $\hat{\sigma_2} = \hat{\sigma} \sqrt{1 +  X_0^T (X^TX)^{-1} X_0}$.
 
 The additional variance in the prediction interval arises because we are using the estimated $\beta$ from the regression model, which was derived from the original data $X$ and $Y$. The inclusion of the new data $X_0$ introduces additional variability, hence the wider interval.
+
 ### Estimated error 
 - Unbiased estimator ($\hat{\epsilon}=Y-\hat{Y}$): $\mathbb{E}[\hat{\epsilon}]=\mathbb{E}[\epsilon]=0$.
 - $\text{Cov}(\hat{\epsilon}) = \sigma^2 M$, where $M$ is residual maker matrix as $1-X(X^TX)^{-1}X^T$.
+- $\hat{\epsilon_i} \sim N(0,\sigma^2M)
+-
+$$
+\frac{\sum_{i=1}^n \hat{\epsilon_i}^2}{\sigma^2} \sim \chi^2_{n-p}
+$$
+
+Remark: In general, when we have a random vector $X$ following the normal distribution, we use the inverse of covariance matrix of X standardized $X$ and therefore get $(X-\mu)^T\Sigma^{-1}(X-\mu) \sim \chi^2_n$. However, the $M$ is not invertible in general. Instead, we use a different way to standardize our variable by the following way. 
+
+Assume $e \sim N(0, M)$, where $M$ is an idempotent matrix of rank $r$. Note that all idempotent matrix are diagonalizable, you can look the proof [here](https://math.stackexchange.com/questions/600745/are-idempotent-matrices-always-diagonalizable). Then $e^T M e$ 
+has a central chi-square distribution with $r$ degrees of freedom. This follows 
+from the fact that there exists an orthogonal matrix $A$ such that $M = 
+A D_A A^T$, where $D_A = \text{diag}(1, \dots , 1,0, \dots ,0)$ with the number of ones being 
+equal to the rank of the matrix $M$. Thus $e^T M e = e^T A D_A A^T e = z^T D_A z = 
+\sum_{i=1}^{r} z_i^2$, where $z = (z_1, \dots, z_n)^T = f^T e \sim N(0, A M A^T) = N(0, D_A)$. In our case, we have $e=\hat{\epsilon}/\sigma^2$.
+
 
 
 
