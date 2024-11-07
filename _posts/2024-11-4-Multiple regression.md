@@ -228,7 +228,7 @@ The additional variance in the prediction interval arises because we are using t
 ### Estimated error 
 - Unbiased estimator ($\hat{\epsilon}=Y-\hat{Y}$): $\mathbb{E}[\hat{\epsilon}]=\mathbb{E}[\epsilon]=0$.
 - $\text{Cov}(\hat{\epsilon}) = \sigma^2 M$, where $M$ is residual maker matrix as $1-X(X^TX)^{-1}X^T$.
-- $\hat{\epsilon_i} \sim N(0,\sigma^2M)
+- $\hat{\epsilon_i} \sim N(0,\sigma^2M)$
 -
 $$
 \frac{\sum_{i=1}^n \hat{\epsilon_i}^2}{\sigma^2} \sim \chi^2_{n-p}
