@@ -7,7 +7,7 @@ tags: [documentation, sample]
 ---
 First, we look at how to construct an **UMRE** estimator.
 
-### **Theorem: Uniformly Minimum Risk Estimator (UMRE) Construction**
+## **Theorem: Uniformly Minimum Risk Estimator (UMRE) Construction**
 
 Let $X$ be a random variable with a parameter $\theta$, and let $d(X)$ be an equivariant estimator of $X$. Define the transformed variable $Y = X - d(X)$, where $Y$ is independent of $\theta$.
 
@@ -24,6 +24,8 @@ Then, the uniformly minimum risk estimator (UMRE) of $X$ is given by:
 $$
 \hat{T}(X) = \hat{T}(Y) + d(X).
 $$
+
+The following is attempt to provide more underlying intepretation of this theorem.
 
 ### **Step 1: Separate $X$ into Components**
 First, we begin with the random variable $X$, which depends on the parameter $\theta$. To make the estimator independent of $\theta$, we decompose $X$ into two parts:
