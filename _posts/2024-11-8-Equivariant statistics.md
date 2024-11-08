@@ -72,3 +72,9 @@ Since $\hat{T}(Y)$ minimizes the conditional risk in the noise space, and the no
 
 This ensures that $\hat{T}(X)$ is **UMRE**, as it is the best possible estimator in terms of risk across all values of $\theta$ and satisfies the criteria for the UMRE in terms of unbiasedness and minimal risk.
 
+## Special case of UMRE: Pitman estimator
+
+We call the UMRE as **Pitman estimator** when we conside the loss function as quadratic loss function. i.e, $L(\theta,a)=|\theta-a|^2$.
+
+If we know the density of $\epsilon$ w.r.t lebesgue measure. Then we have a URME statistic as following:
+
