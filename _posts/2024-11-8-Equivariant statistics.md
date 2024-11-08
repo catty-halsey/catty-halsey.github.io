@@ -78,3 +78,7 @@ We call the UMRE as **Pitman estimator** when we conside the loss function as qu
 
 If we know the density of $\epsilon$ w.r.t lebesgue measure. Then we have a URME statistic as following:
 
+$$
+E(\epsilon_n | Y) = \frac{\int z \, p_0(X_1 -z, \dots, X_{n-1} - z, z) \, du}{\int p_0(X_1 -z, \dots, X_{n-1} - z, z) \, dz}.
+$$
+
