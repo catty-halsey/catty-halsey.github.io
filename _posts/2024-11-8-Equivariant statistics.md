@@ -74,7 +74,7 @@ This ensures that $\hat{T}(X)$ is **UMRE**, as it is the best possible estimator
 
 ## Special case of UMRE: Pitman estimator
 
-We call the UMRE as **Pitman estimator** when we conside the loss function as quadratic loss function. i.e, $L(\theta,a)=|\theta-a|^2$.
+We call the UMRE as **Pitman estimator** when we conside the loss function as quadratic loss function. i.e, $L(\theta,a)=(\theta-a)^2$.
 
 If we know the density of $\epsilon$ w.r.t lebesgue measure. Then we have a URME statistic as following:
 
