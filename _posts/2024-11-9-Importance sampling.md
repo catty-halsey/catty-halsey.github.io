@@ -26,7 +26,7 @@ where $X_i \sim \tau$, $w(x)=f(X_i)/g(X_i)$ served as a weighted function.
 
 **Remark**
 - Unbiased
-- Inconsistent under normalization: it is not a suitable estimator when we want to estimate the proportion of target distribution.
+- Inconsistent under normalization: it is not a suitable estimator when we want to estimate the proportion of target distribution. Mathematically, assume $f(x)=\frac{1}{Z}\tilde{f}(x)$, we have $\frac{1}{N}\sum_{i=1}^N h(X_i)\tilde{w}(X_i)$ almost surely converges to $Z\theta$, where $\tilde{w}=\tilde{f}/g$ and $Z$ is normalized constant.
 - Suitable choice of $g(x)$ can lead to more accurate estimator than direct estimation. "Accuracy" here means that smaller bias and variance. "Suitable choice" means the $g(x)$ is close to $|h(x)|f(x)$. In partiular, the variance of this estimator is smallest when the following equality holds $g(x) = \frac{|h(x)|f(x)}{\int |h(x)|f(x) \ \mu(dx)}$. In general, it is impossible to attain the smallest variance because we can not compute the integration part. However, it present a good idea of how to choose our proposed distribution and construct a better estimator.
 
 The multiplicative importance sampling defined as 
@@ -41,7 +41,7 @@ where $X_i \sim \tau$, $w(X_i)=f(X_i)/g(X_i)$ served as a weighted function.
 
 - **Bias**: The estimator is biased.
   
-- **Consistency under Normalization**: This estimator can be applied when only partial information about the target distribution is available, such as in the case of a posterior distribution.
+- **Consistency under Normalization**: This estimator can be applied when only partial information about the target distribution is available, such as in the case of a posterior distribution. Mathematically, Mathematically, assume $f(x)=\frac{1}{Z}\tilde{f}(x)$, we have $\frac{\frac{1}{N}\sum_{i=1}^N h(X_i)\tilde{w}(X_i)}{\frac{1}{N}\sum_{i=1}^N \tilde{w}(X_i)}$ almost surely converges to $\theta$, where $\tilde{w}=\tilde{f}/g$. 
 
 - **Sensitivity to Rare Events**: This estimator is sensitive to estimating rare events, e.g., probabilities of the form $P(X > t)$ where $t$ is a threshold.
 
