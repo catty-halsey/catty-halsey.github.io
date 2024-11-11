@@ -5,6 +5,7 @@ author: "Ziyan Li"
 categories: journal
 tags: [documentation, sample]
 ---
+## The direct MC integration
 When we want to estimate the $\theta = \text{E}(h(X))$, where $X \sim \pi$. The dierct way is to simulate the sample from the target distribution $\pi$,
 plug the sample into the function $h$, and then take the average. i.e,
 
@@ -16,7 +17,9 @@ where $X_i \sim \pi$.
 
 However, in practice, when the target distribution is complicated, it is hard to directly sample from it. Therefore, we introduce a proposed distribution, which is accessible for direct simulation. Rejection sampling and importance sampling both involve using proposed distribution $\tau$ to construct estimator $\\hat{\theta}$ to estimate the expecation of a function $h(X)$ under the target distribution $\pi$. Next, we focus on introducing teo types of importance sampling, namely additive importance sampling and multiplicative importance sampling. In the following construction, we assume that both target $\pi$ and proposed distribution $\tau$ both have density function denoted as $f(x)$ and $g(x)$, respectively.
 
-**The additive importance sampling defined as 
+## The additive importance sampling
+
+The estimator of the additive importance sampling defined as
 
 $$
 \hat{\theta}=\frac{1}{N}\sum_{i=1}^N h(X_i)w(X_i),
@@ -32,7 +35,8 @@ where $X_i \sim \tau$, $w(x)=f(X_i)/g(X_i)$ served as a weighted function.
 - When estimating a probability, we often use an indicator function $h(x) = \mathbb{I}\{X \in A\}$, which is bounded. This boundedness inherently limits the variance of the estimator, making it more stable and often effective for rare-event estimation.
 - For unbounded $h(x)$, like $h(x) = x$, large values of $x$ can interact with $w(x)$ (i.e., $\frac{f(x)}{g(x)}$) to create heavy tails in $h(x)w(x)$, leading to potentially infinite or high variance. (See the example following)
 
-The multiplicative importance sampling defined as 
+## The multiplicative importance sampling
+The estimator of multiplicative importance sampling defined as 
 
 $$
 \hat{\theta}=\frac{\frac{1}{N}\sum_{i=1}^N h(X_i)w(X_i)}{\frac{1}{N}\sum_{i=1}^N w(X_i)},
