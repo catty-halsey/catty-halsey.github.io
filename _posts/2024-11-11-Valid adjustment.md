@@ -63,7 +63,7 @@ This equality can be generalize into a rule (rule 3 of do-calculus), which we in
 
 We should pay attention to the different focus of the valid adjustment sets and the optimal adjustment sets. When we discuss the optimal adjustment set, we are mostly interested the variance of the estimator and so we look at the different causal effect of variable on variance instead of the causal effect on $Y$, since we already under the valid adjustment set situations.
 
-Recall that we discuss the https://catty-halsey.github.io/Multiple-regression#Uniqueness-of-Estimatied-Beta-in-Multiple-Linear-Regression
+Now, we consider a special case that linear Guassian SCM, i.e., all assignments are linear and the noises are normally distributed with zero mean. We can use regression of $Y$ on $X$ and $Z$ to get the causal effect of $X$ on $Y$. Theoretically, even we regress on different $X$ and some valid adjustment, the same coefficient should not be deviate from each other too much. Generally, the confidence interval for the same coefficient from different regressions (if the regression still regress on $X$ and some valid adjustment set) should agree on the confidence interval. Otherwise, it implies there is some mispecification in the DAG. eg. the wrong valid adjustment set and the wrong edge between the nodes. Recall the confidence interval of coefficient from [here][https://catty-halsey.github.io/Multiple-regression#Uniqueness-of-Estimatied-Beta-in-Multiple-Linear-Regression].
 
 
 
