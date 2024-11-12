@@ -78,11 +78,33 @@ Now, we consider a special case that linear Guassian SCM, i.e., all assignments 
 
 ## Do-Calculus
 
-In many real-world scenarios, causal models have hidden confounders that affect both the treatment $X$ and the outcome $Y$. This makes it difficult, or even impossible, to find a straightforward adjustment set that would satisfy the backdoor criterion. Do-calculus is designed to handle these situations by:
+In many real-world scenarios, causal models have hidden confounders that affect both the treatment $X$ and the outcome $Y$. This makes it difficult, or even impossible, to find a straightforward adjustment set that would satisfy the backdoor criterion. Pearl has developed the so-called do-calculus that consists
+of three rules, which helps to compute the probability under intervention from the observation distribution. Pearl proved that all identifiable intervention distributions can be computed by an iterative application of these three rules. 
 
-1. **Transforming Interventional Distributions**: Using the rules of do-calculus (action/observation exchange, insertion/deletion of observations, and insertion/deletion of actions), we can transform expressions involving interventions into ones that either:
-   - Remove the intervention or simplify it, or
-   - Rephrase it in terms of observational data we can collect.
+Given a graph $G$ and disjoint subsets $X, Y, Z,$ and $W$, we have:
 
-2. **Gradually Simplifying**: The rules help us decompose complex interventional distributions step-by-step. This process eventually leads to expressions that can be estimated from data, even if we start with a model where no immediate valid adjustment set exists due to hidden variables.
+(i). **Insertion/deletion of observations**:
+   $$
+   p_{C;\text{do}(X := x)}(y \mid z, w) = p_{C;\text{do}(X := x)}(y \mid w)
+   $$
+   if $Y$ and $Z$ are d-separated by $X, W$ in a graph where incoming edges in $X$ have been removed.
+
+(ii). **Action/observation exchange**:
+   $$
+   p_{C;\text{do}(X := x, Z = z)}(y \mid w) = p_{C;\text{do}(X := x)}(y \mid z, w)
+   $$
+   if $Y$ and $Z$ are d-separated by $X, W$ in a graph where incoming edges in $X$ and outgoing edges from $Z$ have been removed.
+
+(iii). **Insertion/deletion of actions**:
+   $$
+   p_{C;\text{do}(X := x, Z = z)}(y \mid w) = p_{C;\text{do}(X := x)}(y \mid w)
+   $$
+   if $Y$ and $Z$ are d-separated by $X, W$ in a graph where incoming edges in $X$ and $Z(W)$ have been removed. Here, $Z(W)$ is the subset of nodes in $Z$ that are not ancestors of any node in $W$ in a graph that is obtained from $G$ after removing all edges into $X$.
+
+   ## References
+
+- Pearl, J. *Causality: Models, Reasoning, and Inference*. Cambridge University Press, 2009.
+- Spirtes, P., Glymour, C., Scheines, R. *Causation, Prediction, and Search*. MIT Press, 2000.
+- Peters, J., Janzing, D., & Schölkopf, B. *Elements of Causal Inference: Foundations and Learning Algorithms*. MIT Press, 2017.
+
 
