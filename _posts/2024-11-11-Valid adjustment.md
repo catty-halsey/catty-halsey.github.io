@@ -5,6 +5,11 @@ author: "Ziyan Li"
 categories: journal
 tags: [documentation, sample]
 ---
+## Table of Contents
+- [Motivation of constructing valid adjustment set](#Motivation-of-constructing-valid-adjustment-set)
+- [Valid adjustment set](#Valid-adjustment-set)
+- [Do-Calculus](#Do-Calculus)
+
 ## Motivation of constructing valid adjustment set
 In general, the conditional probability is different from the probability under intervention. For example, assume we have a SCM with a DAG as following
 
