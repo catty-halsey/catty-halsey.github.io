@@ -1,3 +1,10 @@
+---
+layout: post
+title: "Radon Nikodym theorem"
+author: "Ziyan Li"
+categories: journal
+tags: [documentation, sample]
+---
 
 1. **Mapping from Sample Space to Real Line:**
    The random variable \( X \) maps outcomes from the sample space (often denoted by \( \Omega \)) to the real line \( \mathbb{R} \). In doing so, we translate "events" in the sample space into intervals or sets on the real line.
