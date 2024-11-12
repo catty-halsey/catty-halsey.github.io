@@ -55,6 +55,13 @@ $$
 p_{\mathcal{C}; \text{do}(X := x, U=u)}(y) = p_{\mathcal{C}; \text{do}(X := x)}(y) = p_{\mathcal{C}; \text{do}(X := x)}(y|U) = p_{\mathcal{C}}(y|x,u) .
 $$
 
+This equality can be generalize into a rule (rule 3 of do-calculus), which we introduce in a later section. We can observe that there is no causal effect of $U$ on $Y$ if we already intervene on $X$ from this equality. However, if we intervene on $U$, it indeed provide extra information on $X$, which decrease the varity of $X$ and make less precise of estimation of $Y$ using $X$. This trigger a questions that what kind of the valid adjustment sets lead to the smallest variance of estimator? The core idea is we should include more variables which can help to explain $Y$ but less variables which can help to explain $X$.The more varaibles explaining $Y$, the estimation is more accurate with less variance. In contrast, the more variables explaining $X$ weaken the varity of $X$ and therefore weaken the ability of $X$ to accurately explain $X$. Hence, we have two criteria to have the optimal valid adjustment set.
+
+(i) If $Z$ is a valid adjustment set and $W \in \text{PA}_X$, $\text{var}(\text{estimator} \mid Z \setminus \{W\})$ is smaller than $\text{var}(\text{estimator} \mid Z$.
+
+(ii) If $Z$ is a valid adjustment set and $W \in \text{PA}_Y$, $\text{var}(\text{estimator} \mid Z \cup \{W\})$ is smaller than $\text{var}(\text{estimator} \mid Z$.
+
+We should pay attention to the different focus of the valid adjustment sets and the optimal adjustment sets. When we discuss the optimal adjustment set, we are mostly interested the variance of the estimator and so we look at the different causal effect of variable on variance instead of the causal effect on $Y$, since we already under the valid adjustment set situations.
 
 
 
