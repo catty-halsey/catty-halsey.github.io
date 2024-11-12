@@ -13,6 +13,20 @@ $$
 p_{\mathcal{C}; \text{do}(X := x)}(y) = \sum_{z} p_{\mathcal{C}}(y \mid x, z) \, p_{\mathcal{C}}(z).
 $$
 
+In general, the conditional probability is different from the probability under intervention. For example, assume we have a SCM with a DAG as following
+
+$$
+\begin{align}
+&X &rarr; Y\\
+&X=N_X\\
+&y=x+N_y\\
+\end{align}
+$$
+
+where $N_X, N_Y$ are idependent standard normal noise.
+
+Then, the probability of $Y$ conditional on $X$ is different from the probablity of $Y$ intervening on $X$. The difference arises from the nature of intervention. Intervention on $X$ only removes the incoming edges of $X$.i.e., the edges from the parents of $X$. Therefore, if we intervene on children of $X$, it does not effect the distribution of $X$. However, the conditional distribution is a two-direction effects. More specific, the conditional distribution $X$ on $Y$ are differ from the distribution of $X$  as long as existing an edge between $X$ and $Y$. In particular, if $X$ is a source node, they the distribution of any variable conditional on X is same as intervening on X.
+
 
 
 
