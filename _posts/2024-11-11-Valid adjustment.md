@@ -5,7 +5,7 @@ author: "Ziyan Li"
 categories: journal
 tags: [documentation, sample]
 ---
-
+## Motivation of constructing valid adjustment set
 In general, the conditional probability is different from the probability under intervention. For example, assume we have a SCM with a DAG as following
 
 $$
@@ -55,7 +55,9 @@ $$
 p_{\mathcal{C}; \text{do}(X := x, U=u)}(y) = p_{\mathcal{C}; \text{do}(X := x)}(y) = p_{\mathcal{C}; \text{do}(X := x)}(y|U) = p_{\mathcal{C}}(y|x,u) .
 $$
 
-This equality can be generalize into a rule (rule 3 of do-calculus), which we introduce in a later section. We can observe that there is no causal effect of $U$ on $Y$ if we already intervene on $X$ from this equality. However, if we intervene on $U$, it indeed provide extra information on $X$, which decrease the varity of $X$ and make less precise of estimation of $Y$ using $X$. This trigger a questions that what kind of the valid adjustment sets lead to the smallest variance of estimator? The core idea is we should include more variables which can help to explain $Y$ but less variables which can help to explain $X$.The more varaibles explaining $Y$, the estimation is more accurate with less variance. In contrast, the more variables explaining $X$ weaken the varity of $X$ and therefore weaken the ability of $X$ to accurately explain $X$. Hence, we have two criteria to have the optimal valid adjustment set.
+This equality can be generalize into a rule (rule 3 of do-calculus), which we introduce in a later section. We can observe that there is no causal effect of $U$ on $Y$ if we already intervene on $X$ from this equality. However, if we intervene on $U$, it indeed provide extra information on $X$, which decrease the varity of $X$ and make less precise of estimation of $Y$ using $X$. This trigger a questions that what kind of the valid adjustment sets lead to the smallest variance of estimator? The core idea is we should include more variables which can help to explain $Y$ but less variables which can help to explain $X$.The more varaibles explaining $Y$, the estimation is more accurate with less variance. In contrast, the more variables explaining $X$ weaken the varity of $X$ and therefore weaken the ability of $X$ to accurately explain $X$. 
+
+Hence, we have two criteria to have the **optimal valid adjustment** set.
 
 (i) If $Z$ is a valid adjustment set and $W \in \text{PA}_X$, $\text{var}(\text{estimator} \mid Z \setminus \{W\})$ is smaller than $\text{var}(\text{estimator} \mid Z)$.
 
@@ -63,11 +65,13 @@ This equality can be generalize into a rule (rule 3 of do-calculus), which we in
 
 We should pay attention to the different focus of the valid adjustment sets and the optimal adjustment sets. When we discuss the optimal adjustment set, we are mostly interested the variance of the estimator and so we look at the different causal effect of variable on variance instead of the causal effect on $Y$, since we already under the valid adjustment set situations.
 
-Now, we consider a special case that linear Guassian SCM, i.e., all assignments are linear and the noises are normally distributed with zero mean. We can use regression of $Y$ on $X$ and $Z$ to get the causal effect of $X$ on $Y$. Theoretically, even we regress on different $X$ and some valid adjustment, the same coefficient should not be deviate from each other too much. Generally, the confidence interval for the same coefficient from different regressions (if the regression still regress on $X$ and some valid adjustment set) should agree on the confidence interval. Otherwise, it implies there is some mispecification in the DAG. eg. the wrong valid adjustment set and the wrong edge between the nodes. Recall the confidence interval of coefficient from [here][https://catty-halsey.github.io/Multiple-regression#Uniqueness-of-Estimatied-Beta-in-Multiple-Linear-Regression].
+Now, we consider a special case that linear Guassian SCM, i.e., all assignments are linear and the noises are normally distributed with zero mean. We can use regression of $Y$ on $X$ and $Z$ to get the causal effect of $X$ on $Y$. Theoretically, even we regress on different $X$ and some valid adjustment, the same coefficient should not be deviate from each other too much. Generally, the confidence interval for the same coefficient from different regressions (if the regression still regress on $X$ and some valid adjustment set) should agree on the confidence interval. Otherwise, it implies there is some mispecification in the DAG. eg. the wrong valid adjustment set and the wrong edge between the nodes. Recall the confidence interval of the regression coefficients from [here](https://catty-halsey.github.io/Multiple-regression#Uniqueness-of-Estimatied-Beta-in-Multiple-Linear-Regression).
 
 
 
-### Why Do-Calculus is Useful When Adjustment Isn't Possible
+
+
+## Do-Calculus
 
 In many real-world scenarios, causal models have hidden confounders that affect both the treatment $X$ and the outcome $Y$. This makes it difficult, or even impossible, to find a straightforward adjustment set that would satisfy the backdoor criterion. Do-calculus is designed to handle these situations by:
 
