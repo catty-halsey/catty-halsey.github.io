@@ -5,6 +5,14 @@ author: "Ziyan Li"
 categories: journal
 tags: [documentation, sample]
 ---
+## Valid adjustment set
+
+Consider an SCM $\mathcal{C}$ over nodes $V$ and let $Y \notin PA_X$. We call a set $Z \subseteq V \setminus \{X, Y\}$ a valid adjustment set for the ordered pair $(X, Y)$ if
+
+$$
+p_{\mathcal{C}; \text{do}(X := x)}(y) = \sum_{z} p_{\mathcal{C}}(y \mid x, z) \, p_{\mathcal{C}}(z).
+$$
+
 
 ### Why Do-Calculus is Useful When Adjustment Isn't Possible
 
