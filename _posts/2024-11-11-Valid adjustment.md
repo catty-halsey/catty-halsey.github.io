@@ -10,107 +10,95 @@ tags: [documentation, sample]
 - [Valid adjustment set](#Valid-adjustment-set)
 - [Do-Calculus](#Do-Calculus)
 
-## Motivation of constructing valid adjustment set
-In general, the conditional probability is different from the probability under intervention. For example, assume we have a SCM with a DAG as following
+## Motivation for Constructing Valid Adjustment Sets
+In general, the conditional probability $P(Y \mid X)$ differs from the probability under intervention. To illustrate this, consider an SCM with a DAG structured as follows:
 
 $$
 \begin{align}
-&X \rightarrow Y\\
-&X=N_X\\
-&Y=X+N_Y\\
+&X \rightarrow Y,\\
+&X = N_X,\\
+&Y = X + N_Y,
 \end{align}
 $$
 
-where $N_X, N_Y$ are idependent standard normal noise.
+where $N_X$ and $N_Y$ are independent standard normal noise.
 
-Then, the probability of $Y$ conditional on $X$ is different from the probablity of $Y$ intervening on $X$. The difference arises from the nature of intervention. Intervention on $X$ only removes the incoming edges of $X$.i.e., the edges from the parents of $X$. Therefore, if we intervene on children of $X$, it does not effect the distribution of $X$. However, the conditional distribution is a two-direction effects. More specific, the conditional distribution $X$ on $Y$ are differ from the distribution of $X$  as long as existing an edge between $X$ and $Y$. In particular, if $X$ is a source node, they the distribution of any variable conditional on X is same as intervening on X.
+In this case, the conditional probability $P(Y \mid X)$ is distinct from the interventional probability $P(Y \mid \text{do}(X))$. This difference stems from the nature of intervention. An intervention on $X$ removes only the incoming edges of $X$—that is, the edges from $X$'s parent nodes. Therefore, if we intervene on $X$'s children, the distribution of $X$ remains unaffected. In contrast, conditional distributions involve two-direction effects: conditioning on $Y$ affects $X$ whenever a directed edge exists between them. 
 
-Can we construct some conditions which allow us to make the intervention distribution equal the conditional distribution? The answer is yes. Judea Pearl proposed the valid adjustment set to allow us to write the intervention distribution into the conditional distribution.
+In particular, if $X$ is a source node, the conditional distribution of any variable on $X$ aligns with its distribution under intervention on $X$. This naturally raises the question: **Under what conditions can we make the intervention distribution equal to the conditional distribution?**
 
-## Valid adjustment set
+Judea Pearl proposed the concept of a **valid adjustment set**, which allows us to equate the intervention distribution to the conditional distribution.
 
-Consider an SCM $\mathcal{C}$ over nodes $V$ and let $Y \notin PA_X$. We call a set $Z \subseteq V \setminus \{X, Y\}$ a **valid adjustment** set for the ordered pair $(X, Y)$ if
+---
+
+## Valid Adjustment Set
+
+Consider an SCM $\mathcal{C}$ over nodes $V$, where $Y \notin PA_X$. We define a set $Z \subseteq V \setminus \{X, Y\}$ as a **valid adjustment** set for the ordered pair $(X, Y)$ if
 
 $$
 p_{\mathcal{C}; \text{do}(X := x)}(y) = \sum_{z} p_{\mathcal{C}}(y \mid x, z) \, p_{\mathcal{C}}(z).
 $$
 
-This construction is essentially block all the indirect effects/paths from $X$ to $Y$. In other words, we make the $X$ to be a source node under the conditional on the valid adjustment set.
+This equation effectively means that conditioning on $Z$ “blocks” all indirect paths from $X$ to $Y$, thus isolating the causal effect of $X$ on $Y$. In other words, conditioning on the valid adjustment set $Z$ makes $X$ behave like a source node with respect to $Y$.
 
-This contruction idea can be generalize into three criteria:
+---
 
-(i) **"Parent adjustment"**: $Z := PA_X$ is a valid adjustment set for $(X, Y)$.
+## Construction Ideas
 
-(ii) **"Backdoor criterion"**: Any $Z \subseteq V \setminus \{X, Y\}$ with
-- $Z$ contains no descendant of $X$ **AND**
-- $Z$ blocks all paths from $X$ to $Y$ entering $X$ through the backdoor (paths of the form $X \leftarrow \dots$)
+This construction generalizes into three criteria for a valid adjustment set:
 
-is a valid adjustment set for $(X, Y)$.
+1. **Parent Adjustment**: Setting $Z := PA_X$ forms a valid adjustment set for $(X, Y)$.
 
-(iii) **"Toward necessity"**: Any $Z \subseteq V \setminus \{X, Y\}$ with
-- $Z$ contains no descendant of any node on a directed path from $X$ to $Y$ (except for descendants of $X$ that are not on a directed path from $X$ to $Y$) **AND**
-- $Z$ blocks all non-directed paths from $X$ to $Y$
+2. **Backdoor Criterion**: Any set $Z \subseteq V \setminus \{X, Y\}$ is a valid adjustment set if:
+   - $Z$ contains no descendants of $X$, **and**
+   - $Z$ blocks all paths from $X$ to $Y$ that enter $X$ through a backdoor (i.e., paths of the form $X \leftarrow \dots$).
 
-is a valid adjustment set for $(X, Y)$.
+3. **Toward Necessity**: Any set $Z \subseteq V \setminus \{X, Y\}$ is valid if:
+   - $Z$ contains no descendants of any node on a directed path from $X$ to $Y$ (except for descendants of $X$ not on the path from $X$ to $Y$), **and**
+   - $Z$ blocks all non-directed paths from $X$ to $Y$.
 
-**Remark**
-- Note that under "toward necessity", we allow the descendants of $X$ in the valid adjustment set as long as it not in the directed path from $X$ t0 $Y$. To understand why this valid, we can use markov property to illustrate it. Since if z is the descendants of $X$ which is not in the directed path from $X$ ro $Y$, $X$ in the path from $U$ to $Y$ is not a collider. Therefore, if we interven on $X$, $U$ and $Y$ are d-separated by $X$ and so conditional independent on $X$. In other words, intervening on $U$ does not provide us more information to estimate $Y$. Mathematically, we have the following equality,
+---
+
+## Remark
+- Under “toward necessity,” descendants of $X$ can be included in the valid adjustment set as long as they are not on the directed path from $X$ to $Y$. To understand why this is valid, consider the Markov property: if $Z$ is a descendant of $X$ not on the directed path from $X$ to $Y$, then $X$ in the path from $U$ to $Y$ is not a collider. Therefore, intervening on $X$ d-separates $U$ and $Y$, making them conditionally independent given $X$. 
+
+Mathematically, this yields:
 
 $$
 p_{\mathcal{C}; \text{do}(X := x, U=u)}(y) = p_{\mathcal{C}; \text{do}(X := x)}(y) = p_{\mathcal{C}; \text{do}(X := x)}(y|U) = p_{\mathcal{C}}(y|x,u) .
 $$
 
-This equality can be generalize into a rule (rule 3 of do-calculus), which we introduce in a later section. We can observe that there is no causal effect of $U$ on $Y$ if we already intervene on $X$ from this equality. However, if we intervene on $U$, it indeed provide extra information on $X$, which decrease the varity of $X$ and make less precise of estimation of $Y$ using $X$. This trigger a questions that what kind of the valid adjustment sets lead to the smallest variance of estimator? The core idea is we should include more variables which can help to explain $Y$ but less variables which can help to explain $X$.The more varaibles explaining $Y$, the estimation is more accurate with less variance. In contrast, the more variables explaining $X$ weaken the varity of $X$ and therefore weaken the ability of $X$ to accurately explain $X$. 
+---
 
-Hence, we have two criteria to have the **optimal valid adjustment** set.
+## Optimal Valid Adjustment Set Criteria
 
-(i) If $Z$ is a valid adjustment set and $W \in \text{PA}_X$, $\text{var}(\text{estimator} \mid Z \setminus \{W\})$ is smaller than $\text{var}(\text{estimator} \mid Z)$.
+To minimize the variance of the estimator, we consider two criteria for the **optimal valid adjustment set**:
 
-(ii) If $Z$ is a valid adjustment set and $W \in \text{PA}_Y$, $\text{var}(\text{estimator} \mid Z \cup \{W\})$ is smaller than $\text{var}(\text{estimator} \mid Z)$.
+1. If $Z$ is a valid adjustment set and $W \in \text{PA}_X$, then removing $W$ from $Z$ decreases $\text{var}(\text{estimator} \mid Z \setminus \{W\})$.
+2. If $Z$ is a valid adjustment set and $W \in \text{PA}_Y$, then adding $W$ to $Z$ decreases $\text{var}(\text{estimator} \mid Z \cup \{W\})$.
 
-We should pay attention to the different focus of the valid adjustment sets and the optimal adjustment sets. When we discuss the optimal adjustment set, we are mostly interested the variance of the estimator and so we look at the different causal effect of variable on variance instead of the causal effect on $Y$, since we already under the valid adjustment set situations.
+These criteria highlight that the optimal adjustment set focuses on variables that explain $Y$ but not $X$ excessively. This balance reduces the variance of the estimator for $Y$ by maximizing the explanatory power of $Y$ and minimizing that of $X$.
 
-Now, we consider a special case that linear Guassian SCM, i.e., all assignments are linear and the noises are normally distributed with zero mean. We can use regression of $Y$ on $X$ and $Z$ to get the causal effect of $X$ on $Y$. Theoretically, even we regress on different $X$ and some valid adjustment, the same coefficient should not be deviate from each other too much. Generally, the confidence interval for the same coefficient from different regressions (if the regression still regress on $X$ and some valid adjustment set) should agree on the confidence interval. Otherwise, it implies there is some mispecification in the DAG. eg. the wrong valid adjustment set and the wrong edge between the nodes. Recall the confidence interval of the regression coefficients from [here](https://catty-halsey.github.io/Multiple-regression#Uniqueness-of-Estimatied-Beta-in-Multiple-Linear-Regression).
-
-
-
-
+---
 
 ## Do-Calculus
 
-In many real-world scenarios, causal models have hidden confounders that affect both the treatment $X$ and the outcome $Y$. This makes it difficult, or even impossible, to find a straightforward adjustment set that would satisfy the backdoor criterion. Pearl has developed the so-called do-calculus that consists
-of three rules, which helps to compute the probability under intervention from the observation distribution. Pearl proved that all identifiable intervention distributions can be computed by an iterative application of these three rules. 
+Pearl’s **do-calculus** offers three rules to compute interventional probabilities from observed distributions. Given disjoint subsets $X$, $Y$, $Z$, and $W$ in a graph $G$, the rules are as follows:
 
-Given a graph $G$ and disjoint subsets $X, Y, Z,$ and $W$, we have:
+1. **Insertion/deletion of observations**:
+   $$ p_{\mathcal{C};\text{do}(X := x)}(y \mid z, w) = p_{\mathcal{C};\text{do}(X := x)}(y \mid w) $$
+   if $Y$ and $Z$ are d-separated by $X, W$ after removing incoming edges to $X$. This rule permits simplifying conditions based on d-separation.
 
-(i). **Insertion/deletion of observations**:
+2. **Action/observation exchange**:
+   $$ p_{\mathcal{C};\text{do}(X := x, Z = z)}(y \mid w) = p_{\mathcal{C};\text{do}(X := x)}(y \mid z, w) $$
+   if $Y$ and $Z$ are d-separated by $X, W$ after removing incoming edges to $X$ and outgoing edges from $Z$. This rule helps “swap” action and observation as needed.
 
-$$
-p_{C;\text{do}(X := x)}(y \mid z, w) = p_{C;\text{do}(X := x)}(y \mid w)
-$$
-   
-   if $Y$ and $Z$ are d-separated by $X, W$ in a graph where incoming edges in $X$ have been removed.
+3. **Insertion/deletion of actions**:
+   $$ p_{\mathcal{C};\text{do}(X := x, Z = z)}(y \mid w) = p_{\mathcal{C};\text{do}(X := x)}(y \mid w) $$
+   if $Y$ and $Z$ are d-separated by $X, W$ after removing all edges into $X$ and $Z(W)$. Here, $Z(W)$ represents nodes in $Z$ that aren’t ancestors of any node in $W$.
 
-(ii). **Action/observation exchange**:
+## References
 
-$$
-p_{C;\text{do}(X := x, Z = z)}(y \mid w) = p_{C;\text{do}(X := x)}(y \mid z, w)
-$$
-
-   if $Y$ and $Z$ are d-separated by $X, W$ in a graph where incoming edges in $X$ and outgoing edges from $Z$ have been removed.
-
-(iii). **Insertion/deletion of actions**:
-
-$$
-p_{C;\text{do}(X := x, Z = z)}(y \mid w) = p_{C;\text{do}(X := x)}(y \mid w)
-$$
-
-   if $Y$ and $Z$ are d-separated by $X, W$ in a graph where incoming edges in $X$ and $Z(W)$ have been removed. Here, $Z(W)$ is the subset of nodes in $Z$ that are not ancestors of any node in $W$ in a graph that is obtained from $G$ after removing all edges into $X$.
-
-   ## References
-
-- Pearl, J. *Causality: Models, Reasoning, and Inference*. Cambridge University Press, 2009.
-- Spirtes, P., Glymour, C., Scheines, R. *Causation, Prediction, and Search*. MIT Press, 2000.
-- Peters, J., Janzing, D., & Schölkopf, B. *Elements of Causal Inference: Foundations and Learning Algorithms*. MIT Press, 2017.
-
-
+- Pearl, J. Causality: Models, Reasoning, and Inference. Cambridge University Press, 2009.
+- Spirtes, P., Glymour, C., Scheines, R. Causation, Prediction, and Search. MIT Press, 2000.
+- Peters, J., Janzing, D., & Schölkopf, B. Elements of Causal Inference: Foundations and Learning Algorithms. MIT Press, 2017.
