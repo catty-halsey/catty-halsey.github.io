@@ -12,7 +12,7 @@ $$
 \begin{align}
 &X \rightarrow Y\\
 &X=N_X\\
-&y=x+N_y\\
+&Y=X+N_Y\\
 \end{align}
 $$
 
@@ -62,6 +62,8 @@ This equality can be generalize into a rule (rule 3 of do-calculus), which we in
 (ii) If $Z$ is a valid adjustment set and $W \in \text{PA}_Y$, $\text{var}(\text{estimator} \mid Z \cup \{W\})$ is smaller than $\text{var}(\text{estimator} \mid Z)$.
 
 We should pay attention to the different focus of the valid adjustment sets and the optimal adjustment sets. When we discuss the optimal adjustment set, we are mostly interested the variance of the estimator and so we look at the different causal effect of variable on variance instead of the causal effect on $Y$, since we already under the valid adjustment set situations.
+
+Recall that we discuss the https://catty-halsey.github.io/Multiple-regression#Uniqueness-of-Estimatied-Beta-in-Multiple-Linear-Regression
 
 
 
