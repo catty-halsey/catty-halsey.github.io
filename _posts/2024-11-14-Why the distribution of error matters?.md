@@ -31,4 +31,6 @@ $$
 
 Furthermore, let $c$ be an arbitrary $p$-dimensional vector, and $\hat{\beta}$ the least squares estimator. Then $c^T \hat{\beta}$ has minimal variance among all **linear unbiased estimators** of $c^T \beta$.
 
+When the error is non-normal distribution, there exists other types of unbiased and biased estimators having smaller variance then OLS.  **Heavy Tails and Large Residuals**: The Laplace distribution's heavy tails make extreme residuals more common than in, say, a normal distribution. These outliers increase RSS disproportionately due to the squaring effect. Since RSS is the sum of squared residuals, it overemphasizes large errors, making the OLS objective particularly sensitive to these values. This results in $\hat{\beta}$ estimates that "chase" outliers, yielding high variance as $\hat{\beta}$ changes significantly with each extreme value. The increased variability in RSS directly translates to an unstable $\hat{\beta}$ because OLS is minimizing this highly variable RSS. Thus, the variance of $\hat{\beta}$ becomes large, reflecting the estimator's instability under Laplace-distributed errors. In constrast, the MLE is maximize the log-likehood function and log operator essentailly weaken the effect the outlier. Hence, the MLE have smaller variance than OLS when error follows distribution with the heavy tail.
+
 
