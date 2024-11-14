@@ -1,10 +1,30 @@
 ---
 layout: post
-title: "Equivariant statistic"
+title: "Equivariant estimator"
 author: "Ziyan Li"
 categories: journal
 tags: [documentation, sample]
 ---
+Before introducing equivariant estimator, we shall firstly introduce the concept of invariance under transformation. Since when we discuss equivariant estimators, we essentially refer to that the estimators is equivariant w.r.t some transformation $g$.
+
+The model $\mathcal{P}$ is invariant to a transformation $g$ if:
+
+$$
+\text{1. When } X \sim P \in \mathcal{P}, \text{ then } gX = X' \sim P' \in \mathcal{P}.
+$$
+
+$$
+\text{2. For every } P' \in \mathcal{P}, \, \exists P \in \mathcal{P} \text{ such that } X \sim P \Rightarrow gX \sim P'.
+$$
+
+Under this transformation, $gX$ has the same distribution as $X$. Hence, if we take a decision $\delta$ on $X$, the loss function satisfies $L(\theta_1, \delta(X)) = L(\theta_2, \delta(gX))$, where $\theta_2 = g\theta_1$. The question arises: is it possible to find a transformation $\tilde{g}$ such that $\tilde{g} \delta(X) = \delta(gX)$, satisfying $L(\theta_1, \delta(X)) = L(\theta_2, \delta(gX))$? The answer is not always. However, if such a $\tilde{g}$ exists, we say the loss function is **invariant under the transformation**. Thus, we can write:
+
+$$
+L(\theta_1, \delta(X)) = L(g\theta_1, \delta(gX)) = L(g\theta_1, \tilde{g} \delta(X)).
+$$
+
+A decision rule or estimator $\delta(\cdot)$ is **equivariant with respect to transformation** $g$ if $\delta(gX) = g(\delta(X))$. Under the construction of an equivariant estimator and an invariant loss function with respect to transformation, the corresponding risk of such a decision or estimator is independent of $\theta$. Furthermore, given a collection of equivariant estimators and a fixed invariant loss function, we can find an equivariant estimator with the minimum risk among all equivariant estimators, known as the **UMER**. An example of a UMER is the Pitman estimator under quadratic loss.
+
 First, we look at how to construct an **UMRE** estimator.
 
 ## **Theorem: Uniformly Minimum Risk Estimator (UMRE) Construction**
