@@ -23,7 +23,14 @@ $$
 L(\theta_1, \delta(X)) = L(g\theta_1, \delta(gX)) = L(g\theta_1, \tilde{g} \delta(X)).
 $$
 
-A decision rule or estimator $\delta(\cdot)$ is **equivariant with respect to transformation** $g$ if $\delta(gX) = g(\delta(X))$. Under the construction of an equivariant estimator and an invariant loss function with respect to transformation, the corresponding risk of such a decision or estimator is independent of $\theta$. Furthermore, given a collection of equivariant estimators and a fixed invariant loss function, we can find an equivariant estimator with the minimum risk among all equivariant estimators, known as the **UMER**. An example of a UMER is the Pitman estimator under quadratic loss.
+A decision rule or estimator $\delta(\cdot)$ is **equivariant with respect to transformation** $g$ if $\delta(gX) = g(\delta(X))$. Under the construction of an equivariant estimator and an invariant loss function with respect to transformation, the corresponding risk of such a decision or estimator is independent of $\theta$. Furthermore, given a collection of equivariant estimators and a fixed invariant loss function, we can find an equivariant estimator with the minimum risk among all equivariant estimators, known as the **UMER**. An example of a UMER is the Pitman estimator under quadratic loss. Before introducing any more detailis, we shall provide some intuition about the neccessity of equivariant estimator and inavriant loss function in making risk independent of parameter space.
+
+1. **Equivariant Estimator**: The idea behind the equivariant estimator is to ensure that the transformation of the data $X$ (via the operator $g$) and the estimator $\delta(X)$ behave in the same way across the entire parameter space. In other words, if you apply the transformation $g$ to the data, the structure of the estimator should transform consistently as well. This ensures that the estimator remains compatible with the parameter space $\theta$ and can be **compared** consistently across different parameter values.
+
+2. **Loss Function**: The loss function quantifies how much the estimator deviates from the true parameter value $\theta$. This step is essentially measuring the error between the estimator $\delta(X)$ and the true parameter $\theta$. The loss function essentially "subtracts" the true parameter from the estimator to determine how much deviation there is.
+
+3. **Invariant Loss Function**: The invariance of the loss function ensures that the way we measure the deviation between the estimator and the true parameter remains consistent, no matter which $\theta$ is involved. That is, if we apply a transformation $g$, the loss function remains the same (invariant) for both the transformed parameter $g\theta$ and the original parameter $\theta$. This invariance guarantees that **the measurement of the deviation is uniform** across all $\theta$, which makes the **risk** (expected loss) independent of $\theta$.
+
 
 First, we look at how to construct an **UMRE** estimator.
 
