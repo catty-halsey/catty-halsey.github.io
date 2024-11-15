@@ -15,8 +15,13 @@ The **Lebesgue measure** $\mu$ on $\mathbb{R}$ (the real line) is **σ-finite**.
 This property is crucial for many important results in measure theory and integration. The fact that the measure is σ-finite allows us to apply powerful theorems like **Fubini's theorem** and **Tonelli's theorem** for changing the order of integration in multiple integrals. These theorems require the measure to be σ-finite to ensure that the integrals can be split into simpler components.
 
 #### **Why σ-Finiteness Matters for Integration:**
-- **Fubini’s theorem**: It says that when integrating over a product of two spaces, we can interchange the order of integration, i.e., $\int_{\mathbb{R}^2} f(x, y) \, d(x, y) = \int_{\mathbb{R}} \left( \int_{\mathbb{R}} f(x, y) \, dy \right) dx$.
-  - For this to work, the underlying measure (in this case, Lebesgue measure) must be σ-finite.
+- **Fubini’s theorem**: It says that when integrating over a product of two spaces, we can interchange the order of integration, i.e.,
+  
+$$
+\int_{\mathbb{R}^2} f(x, y) \, d(x, y) = \int_{\mathbb{R}} \left( \int_{\mathbb{R}} f(x, y) \, dy \right) dx.
+$$
+
+For this to work, the underlying measure (in this case, Lebesgue measure) must be σ-finite.
 - **Tonelli's theorem**: This is another theorem related to non-negative functions that lets us swap the order of summation or integration, again relying on the σ-finiteness of the measure.
 
 ---
