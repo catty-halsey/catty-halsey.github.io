@@ -37,3 +37,6 @@ The proof aims to show that \( P(W_N \leq z S_N) \) converges to a value close t
 ### Summary
 
 The proof uses probability bounds, the law of large numbers, and asymptotic limits to show that \( P(W_N \leq z S_N) \) converges to the target confidence level \( 1 - \alpha \) as \( N \to \infty \). This ensures that \( W_N \leq z S_N \) forms an approximate \( (1 - \alpha) \)-level confidence interval for \( \theta \).
+
+
+
