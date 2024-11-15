@@ -5,8 +5,24 @@ author: "Ziyan Li"
 categories: journal
 tags: [documentation, sample]
 ---
+# The Radon–Nikodym Theorem
 
-1. **Mapping from Sample Space to Real Line:**
+The Radon–Nikodym theorem involves a measurable space $(X, \Sigma)$, on which two $\sigma$-finite measures are defined: $\mu$ and $\nu$. 
+
+The theorem states that, if $\nu \ll \mu$ (that is, $\nu$ is **absolutely continuous** with respect to $\mu$), then there exists a $\Sigma$-measurable function $f : X \to [0, \infty)$ such that for any measurable set $A \in \Sigma$:
+
+$$
+\nu(A) = \int_A f \, d\mu.
+$$
+
+Here, the function $f$ is called the **Radon–Nikodym derivative** of $\nu$ with respect to $\mu$, and is denoted as:
+
+$$
+f = \frac{d\nu}{d\mu}.
+$$
+
+Remark:
+-**Mapping from Sample Space to Real Line:**
    The random variable $X$ maps outcomes from the sample space (often denoted by $\Omega$) to the real line $\mathbb{R}$. In doing so, we translate "events" in the sample space into intervals or sets on the real line.
 
 2. **Lebesgue Measure on the Real Line:**
