@@ -91,7 +91,7 @@ $$
 \hat{\sigma}^2 = \frac{1}{n - p} \hat{\epsilon}^T \hat{\epsilon}
 $$
 
-where $\hat{\epsilon}$ are the residuals, and this estimator is unbiased and follows a **chi-squared distribution** under the . However, in the presence of heteroscedasticity, the error variance is not constant, and this estimator becomes invalid. The most challenging part of dealing with heteroscedasticity is that it makes the estimation of the error variance difficult. Now,  we shall start with the special case: the error follows normal distribution but not IID.i.e, $\epsilon \sim N(0,\sigma^2\Sigma)$ and $\Sigma$ is not identity matrix. The estimation technique does not change. In other words, under normality assumption, we still can estimate $\hat{\beta}=(X^TX)^{-1}X^TY$, but the variance of the estimator changes and we need to build new confidence interval for it.
+where $\hat{\epsilon}$ are the residuals, and this estimator is unbiased and follows a **chi-squared distribution** under the . However, in the presence of heteroscedasticity, the error variance is not constant, and this estimator becomes invalid. The most challenging part of dealing with heteroscedasticity is that it makes the estimation of the error variance difficult. Now,  we shall start with the special case: the error follows normal distribution but not IID.i.e, $\epsilon \sim N(0,\sigma^2\Sigma)$ and $\Sigma$ is not the identity matrix. The estimation technique does not change. In other words, under normality assumption, we still can estimate $\hat{\beta}=(X^TX)^{-1}X^TY$, but the variance of the estimator changes and we need to build new confidence interval for it.
 
 ### Generalized Least Squares(GLS)
 In cases where we know the covariance structure of the errors (for example, if the errors are heteroscedastic but we know how their variance changes with respect to the predictors), due the diagonalizable nature of the $\Sigma=A^TA$ for some invertible matrix $A$, we can construct the following **GLS estiamtor**
@@ -125,10 +125,43 @@ $$
 \hat{\beta} \sim N(\beta,(X^TX)^{-1}X^TDX(X^TX)^{-1})
 $$
 
-The sandwich estimator essentially provide the estimator for $(X^TX)^{-1}X^TDX(X^TX)^{-1}$ by letting $\hat{D}=\text{diag}(r_1^2,\cdots, r_n^2)$ and $r_i=Y_i-\hat(Y)_i$. Hence, we can construct the new confidence interval for the estimated $\beta$. 
+The sandwich estimator essentially provide the estimator for $(X^TX)^{-1}X^TDX(X^TX)^{-1}$ by letting $\hat{D}=\text{diag}(r_1^2,\cdots, r_n^2)$ and $r_i=Y_i-\hat(Y)_i$. This allow us to construct a distribution for $\hat{\beta}$ and find the new confidence interval for the estimated $\beta$.i.e, we need to verify 
 
-Next, we verify that $(X^TX)^{-1}X^T\hat{D}X(X^TX)^{-1}$ converges to $(X^TX)^{-1}X^TDX(X^TX)^{-1}$ in probability. i.e, we need to verify 
-$(X^TX)^{-1}X^T\hat{D}X(X^TX)^{-1}-(X^TX)^{-1}X^TDX(X^TX)^{-1} \rightarrow 0$ as $n \rightarrow \infty$. After verifying this, we can use slutsky theorem to show 
+$$
+\hat{\beta} \rightarrow N(\beta,(X^TX)^{-1}X^T\hat{D}X(X^TX)^{-1}) \quad \text{as} \quad n \rightarrow \infty
+$$
+
+First, we need to verify that $\hat{\beta}$ converges to $\beta$ in probability. i.e, 
+
+$$
+\text{E}(\hat{\beta})=\beta,
+$$
+
+$$
+\text{Var}(\hat{\beta}) \rightarrow 0 \quad \text{as} n \rightarrow \infty.
+$$
+
+The first condition satifies by the definition of $\hat{\beta}$. The second condition satisfies under two assumptions: 
+
+$$
+\text{(A1)} \quad  \frac{X^TX}{n} \to C \quad (n \to \infty) \quad \text{with} C \text{positive definite}, \\
+$$
+
+$$
+\text{(A2)} \quad  \sigma_i^2 \leq C_1 < \infty \, \forall i \quad \text{and} \quad n^{-1} \sum_{i=1}^n X_{ij}^2 \leq C_2 < \infty,\quad \text{for all} j.
+$$
+
+$A1$ bound the "bread" of the variance of estimated $\beta$ and $A2$ bound the "ham" of the variance of estiamted $\beta$.
+
+
+Then, we verify that $(X^TX)^{-1}X^T\hat{D}X(X^TX)^{-1}$ converges to $(X^TX)^{-1}X^TDX(X^TX)^{-1}$ in probability. i.e, we need to verify 
+$(X^TX)^{-1}X^T\hat{D}X(X^TX)^{-1}-(X^TX)^{-1}X^TDX(X^TX)^{-1} \rightarrow 0$ as $n \rightarrow \infty$. This condition will be satisfied under assumption
+
+$$
+\text{(A3)} \quad \max_{i,j} \|X_{ij} \| \leq K < \infty.
+$$
+
+After verifying this, we can use slutsky theorem to show 
 
 $$
 \frac{1}{\sqrt{(X^TX)^{-1}X^T\hat{D}X(X^TX)^{-1}}}(\hat{\beta}-\beta) \rightarrow N(0,1)
