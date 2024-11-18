@@ -51,7 +51,7 @@ Under the assumption homodrasticity, we discuss the two cases of error distribut
 Assume that $\epsilon \sim N(0,\sigma^2)$,  we have 
 
 $$
-\hat{\beta} \sim N(\beta,\sigma^2 (X^TX)^{-1}),
+\hat{\beta} \sim N(\beta,\sigma^2 (X^TX)^{-1}Id),
 $$
 
 $$
@@ -85,20 +85,56 @@ When the error is non-normal distribution, there exists other types of unbiased 
 
 ## Heterdrasticity
 
-When we construct models for data, we generally start with **linear regression**, assuming **homoskedasticity**, and use **OLS (Ordinary Least Squares)** to estimate the coefficients. After performing residual analysis, we need to **check for heteroscedasticity** if we observe a pattern in the residuals that indicates non-constant variance. The most challenging part of dealing with heteroscedasticity is that it makes the estimation of the error variance difficult. Under homoskedasticity, we estimate the error variance using:
+When we construct models for data, we generally start with **linear regression**, assuming **homoskedasticity**, and use **OLS (Ordinary Least Squares)** to estimate the coefficients. After performing residual analysis, we need to **check for heteroscedasticity** if we observe a pattern in the residuals that indicates non-constant variance. Recall that, under normality assumption of error, we estimate the error variance using:
 
 $$
 \hat{\sigma}^2 = \frac{1}{n - p} \hat{\epsilon}^T \hat{\epsilon}
 $$
 
-where $\hat{\epsilon}$ are the residuals, and this estimator is unbiased and follows a **chi-squared distribution**. However, in the presence of heteroscedasticity, the error variance is not constant, and this estimator becomes invalid.
+where $\hat{\epsilon}$ are the residuals, and this estimator is unbiased and follows a **chi-squared distribution** under the . However, in the presence of heteroscedasticity, the error variance is not constant, and this estimator becomes invalid. The most challenging part of dealing with heteroscedasticity is that it makes the estimation of the error variance difficult. Now,  we shall start with the special case: the error follows normal distribution but not IID.i.e, $\epsilon \sim N(0,\sigma^2\Sigma)$ and $\Sigma$ is not identity matrix. The estimation technique does not change. In other words, under normality assumption, we still can estimate $\hat{\beta}=(X^TX)^{-1}X^TY$, but the variance of the estimator changes and we need to build new confidence interval for it.
 
-In cases where we know the covariance structure of the errors (for example, if the errors are heteroscedastic but we know how their variance changes with respect to the predictors), we can use **Weighted Least Squares (WLS)** to account for the varying variances. In this approach, we weight the observations based on the inverse of the variance of the error terms, which corrects for heteroscedasticity.
+### Generalized Least Squares(GLS)
+In cases where we know the covariance structure of the errors (for example, if the errors are heteroscedastic but we know how their variance changes with respect to the predictors), due the diagonalizable nature of the $\Sigma=A^TA$ for some invertible matrix $A$, we can construct the following **GLS estiamtor**
 
-In general, when the covariance of the error distribution is unknown, we use **two common robust estimators** to adjust for heteroscedasticity:
-1. **Sandwich Estimator**: This method provides a consistent estimate of the variance-covariance matrix of the coefficients, even in the presence of heteroscedasticity.
-.
+$$
+\hat{\beta}= (X^T\Sigma^{-1}X)^{-1}X^T\Sigma^{-1}Y,
+$$
 
-## Error distribution are unknown.
-the $\hat{\beta}$ converge to $\beta$ in probability, which means that the variance of $\hat{\beta}$ converge to $0$ as $n$ goes to infinity.
+$$
+\hat{\beta} \sim N(\beta,\sigma^2(X^T\Sigma^{-1})X),
+$$
+
+$$
+\hat{\sigma}^2 = \frac{1}{n - p} \hat{\epsilon}^T \Sigma^{-1}\hat{\epsilon},
+$$
+
+$$
+\hat{\sigma}^2 \sim \chi_{n-p}
+$$
+
+Then, we can built the test and confidence interval based on the new estimator.
+
+### Sandwich Estimator
+In general, when the covariance of the error distribution is unknown, **Sandwich Estimator**: This method provides a consistent estimate of the variance-covariance matrix of the coefficients. Assume that $\epsilon \sim N(0,D)$ and $D$ is unknow, we have 
+
+$$
+\hat{\beta}= (X^TX)^{-1}XY,
+$$
+
+$$
+\hat{\beta} \sim N(\beta,(X^TX)^{-1}X^TDX(X^TX)^{-1})
+$$
+
+The sandwich estimator essentially provide the estimator for $(X^TX)^{-1}X^TDX(X^TX)^{-1}$ by letting $\hat{D}=\text{diag}(r_1^2,\cdots, r_n^2)$ and $r_i=Y_i-\hat(Y)_i$. Hence, we can construct the new confidence interval for the estimated $\beta$. 
+
+Next, we verify that $(X^TX)^{-1}X^T\hat{D}X(X^TX)^{-1}$ converges to $(X^TX)^{-1}X^TDX(X^TX)^{-1}$ in probability. i.e, we need to verify 
+$(X^TX)^{-1}X^T\hat{D}X(X^TX)^{-1}-(X^TX)^{-1}X^TDX(X^TX)^{-1} \rightarrow 0$ as $n \rightarrow \infty$. After verifying this, we can use slutsky theorem to show 
+
+$$
+\frac{1}{\sqrt{(X^TX)^{-1}X^T\hat{D}X(X^TX)^{-1}}}(\hat{\beta}-\beta) \rightarrow N(0,1)
+$$
+
+Then, we can build the confidence interval of $\hat{\beta}$ based on this distribution.
+
+
 
