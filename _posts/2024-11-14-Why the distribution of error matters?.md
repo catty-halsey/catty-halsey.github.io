@@ -39,8 +39,9 @@ It's important to note that **observing heteroskedasticity does not automaticall
 1. **True Heteroskedasticity**: The underlying process naturally has a non-constant variance of errors. This might occur, for instance, in financial or economic data, where variability increases with the size or magnitude of the predictor variables.
 2. **Model Misspecification**: The observed heteroskedasticity could indicate that the model is misspecified, which might include issues such as omitted variables, non-linear relationships, or incorrect functional form.
 
-In the following, we introduce how to approximate the parameters under homodrasticity and heterodrasticity.
-
+### IID error and heterodrasticity
+- IID error **does not imply** homodrasticity. For example, when IID error follows mixture distribution, then the variance is not constant. In general, if we assume the iid error under normality or markov condition, then the iid error is homodrasitcity.
+- Non IID error **does not imply** the heterdrasticity. For example, the identical distributed error time-series have the constant variance but correlated to each other. Instead, the **non-identical** distributed error **does imply** the heterdrasticity.
 
 ## Homodrasticity
 Under the assumption homodrasticity, we discuss the two cases of error distribution: normality distribution and without normality distribution.
@@ -73,13 +74,11 @@ $$
 \mathbb{E}[\epsilon] = 0, \quad \text{Cov}[\epsilon] = \sigma^2 I, \quad \text{rank}[X] = p.
 $$
 
-Withoud the normality assumption, we have the following properties of estimators.
+Note that the variance and mean of esimator remain the same as the normality assumption.
 
-- 1.**$\hat{\beta}$, $\hat{Y}$, and $\hat{\epsilon}$ asymptoticly converge to the normal distribution.**
+However, the apporximation does not directly follow the normal distribution. Instead, they **asymptoticly** converge to normal dsitribution. Additionally, **$c^T \hat{\beta}$ has minimal variance among all **linear unbiased estimators** of $c^T \beta$.**
 
-- 2.**$c^T \hat{\beta}$ has minimal variance among all **linear unbiased estimators** of $c^T \beta$.**
-
-
+#### **What happens when the error have the non-normal distribution?**
 When the error is non-normal distribution, there exists other types of unbiased and biased estimators having smaller variance then OLS.  **Heavy Tails and Large Residuals**: The Laplace distribution's heavy tails make extreme residuals more common than in, say, a normal distribution. These outliers increase RSS disproportionately due to the squaring effect. Since RSS is the sum of squared residuals, it overemphasizes large errors, making the OLS objective particularly sensitive to these values. This results in $\hat{\beta}$ estimates that "chase" outliers, yielding high variance as $\hat{\beta}$ changes significantly with each extreme value. The increased variability in RSS directly translates to an unstable $\hat{\beta}$ because OLS is minimizing this highly variable RSS. Thus, the variance of $\hat{\beta}$ becomes large, reflecting the estimator's instability under Laplace-distributed errors. In constrast, the MLE is maximize the log-likehood function and log operator essentailly weaken the effect the outlier. Hence, the MLE have smaller variance than OLS when error follows distribution with the heavy tail.
 
 ## Heterdrasticity
