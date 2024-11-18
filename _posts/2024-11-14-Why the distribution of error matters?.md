@@ -26,6 +26,8 @@ There are two primary types of error structures:
 
 The presence of heteroskedasticity or homoskedasticity affects the variance of the residuals $\hat{\epsilon}$, the estimated coefficients $\hat{\beta}$, and the predicted values $\hat{Y}$. This, in turn, influences the construction of confidence intervals for these parameters. Therefore, we must treat the two cases separately and apply different methods for estimation and inference.
 
+### Detecting the heterodrasticity
+
 Since we can only observe the residuals $\hat{\epsilon}$ (which are estimates of the true errors $\epsilon$), it is important to connect the residuals with the heteroskedasticity assumption. In practice, several diagnostic tools have been developed to detect heteroskedasticity:
 
 - **Residual vs. Fitted Values Plot**: When the model assumes homoskedasticity, we expect $\text{cov}(\hat{\epsilon}, \hat{Y}) = 0$, meaning there should be no systematic pattern between the residuals and the fitted values. If homoskedasticity holds, the residuals should be randomly scattered around zero with no discernible structure.
@@ -82,6 +84,20 @@ However, the apporximation does not directly follow the normal distribution. Ins
 When the error is non-normal distribution, there exists other types of unbiased and biased estimators having smaller variance then OLS.  **Heavy Tails and Large Residuals**: The Laplace distribution's heavy tails make extreme residuals more common than in, say, a normal distribution. These outliers increase RSS disproportionately due to the squaring effect. Since RSS is the sum of squared residuals, it overemphasizes large errors, making the OLS objective particularly sensitive to these values. This results in $\hat{\beta}$ estimates that "chase" outliers, yielding high variance as $\hat{\beta}$ changes significantly with each extreme value. The increased variability in RSS directly translates to an unstable $\hat{\beta}$ because OLS is minimizing this highly variable RSS. Thus, the variance of $\hat{\beta}$ becomes large, reflecting the estimator's instability under Laplace-distributed errors. In constrast, the MLE is maximize the log-likehood function and log operator essentailly weaken the effect the outlier. Hence, the MLE have smaller variance than OLS when error follows distribution with the heavy tail.
 
 ## Heterdrasticity
+
+When we construct models for data, we generally start with **linear regression**, assuming **homoskedasticity**, and use **OLS (Ordinary Least Squares)** to estimate the coefficients. After performing residual analysis, we need to **check for heteroscedasticity** if we observe a pattern in the residuals that indicates non-constant variance. The most challenging part of dealing with heteroscedasticity is that it makes the estimation of the error variance difficult. Under homoskedasticity, we estimate the error variance using:
+
+$$
+\hat{\sigma}^2 = \frac{1}{n - p} \hat{\epsilon}^T \hat{\epsilon}
+$$
+
+where $\hat{\epsilon}$ are the residuals, and this estimator is unbiased and follows a **chi-squared distribution**. However, in the presence of heteroscedasticity, the error variance is not constant, and this estimator becomes invalid.
+
+In cases where we know the covariance structure of the errors (for example, if the errors are heteroscedastic but we know how their variance changes with respect to the predictors), we can use **Weighted Least Squares (WLS)** to account for the varying variances. In this approach, we weight the observations based on the inverse of the variance of the error terms, which corrects for heteroscedasticity.
+
+In general, when the covariance of the error distribution is unknown, we use **two common robust estimators** to adjust for heteroscedasticity:
+1. **Sandwich Estimator**: This method provides a consistent estimate of the variance-covariance matrix of the coefficients, even in the presence of heteroscedasticity.
+.
 
 ## Error distribution are unknown.
 the $\hat{\beta}$ converge to $\beta$ in probability, which means that the variance of $\hat{\beta}$ converge to $0$ as $n$ goes to infinity.
