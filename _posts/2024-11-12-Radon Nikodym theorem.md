@@ -47,7 +47,6 @@ In essence, the Radon-Nikodym theorem provides a formal framework for transformi
 
 ## Example: Probability density function
 
-In the context you're describing, let's clarify and refine the ideas of absolute continuity, the Radon-Nikodym derivative, and pushforward measures.
 
 1. **Absolute Continuity and Radon-Nikodym Derivative**:
    If $P_\theta$ is absolutely continuous with respect to $P_{\theta_0}$ (written $P_\theta \ll P_{\theta_0}$), it implies that for any measurable set $A$, if $P_{\theta_0}(A) = 0$, then $P_\theta(A) = 0$ as well. This absolute continuity condition guarantees the existence of a Radon-Nikodym derivative, $\frac{dP_\theta}{dP_{\theta_0}}$, which can be thought of as a "density" of $P_\theta$ with respect to $P_{\theta_0}$.
