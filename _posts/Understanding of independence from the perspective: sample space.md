@@ -1,5 +1,5 @@
 
-
+"Understanding Independence Through the Lens of Sample Spaces"
 ### 1. **Random Variables as Pushforward Measures**
 - A random variable (RV) \(X : \Omega \to \mathbb{R}\) **pushes forward** the original measure \(P\) on the sample space \(\Omega\) to a new measure \(P_X\) on \(\mathbb{R}\). 
   - For a measurable set \(A \subseteq \mathbb{R}\), the probability \(P_X(A)\) is given by:
