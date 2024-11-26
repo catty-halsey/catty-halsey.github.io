@@ -33,7 +33,9 @@ $$
 This means that at most 25% of the population has wealth exceeding $200,000$ dollars.
 
 ### Application in probability theory
+
 1.Chebyshev's inequality
+
 Let $X$ be a random variable with mean $\mu$ and Variance exists. Chebyshev's inequality states:
 
 $$
@@ -46,4 +48,11 @@ $$
 P((X - \mu)^2 \geq \epsilon^2) \leq \frac{\mathbb{E}[(X - \mu)^2]}{\epsilon^2}.
 $$
 
+More generally, we can write chebyshev's inequality as 
+
+$$
+P(\phi(|X - \mu|) \geq \epsilon) \leq \frac{\mathbb{Var}(X)}{\phi(\epsilon)}
+$$
+
+where $\phi(\dot)$ is c.t.s increaseing function. And this inequality often be used to prove the random variable converge in probability.
 
