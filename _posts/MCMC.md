@@ -35,8 +35,6 @@ Intuitively, if the ratio $\frac{\pi(y) Q(y, x)}{\pi(x) Q(x, y)}$ exceeds 1, mea
    - While the first term of $P(x, dy)$ (i.e., $a(x, y)Q(x, dy)$) alone may appear stationary, it does not inherently ensure irreducibility. The full kernel $P(x, dy)$ guarantees both stationary and irreducibility without extra conditions.
    - In simulations, we rely on $a(x, y)$ to enforce stationarity and add a practical requirement on $Q(x, dy)$ to ensure irreducibility. This "two-part" approach mirrors the two terms in $P(x, dy)$.
 
-Ah, great question! Let me carefully explain why the **self-loop term** in the kernel $P(x, A)$ is written as $1_A(x)$, and why it’s not $1_A(y)$, even though the integration range in the first term excludes $x$. This confusion arises from the different roles of the two terms in $P(x, A)$.
-
 ---
 
 ### **1. Structure of the Metropolis-Hastings Kernel**
