@@ -1,7 +1,10 @@
-Your interpretation of generalized linear models (GLMs) is generally correct and well-articulated! Let's refine and clarify a few points to solidify your understanding.
-
 ---
-
+layout: post
+title: "Markov inequality"
+author: "Ziyan Li"
+categories: tutorials
+tags: [documentation, sample]
+---
 ### **Key Concepts in Generalized Linear Models (GLMs):**
 
 1. **Linear Predictor:**
