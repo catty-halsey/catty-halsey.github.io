@@ -181,9 +181,69 @@ For almost sure convergence, we need to check if \( X_n \) converges to 0 with p
 
 This example shows that **convergence in \( L^2 \)** (or even \( L^p \) for \( p \geq 1 \)) **does not imply almost sure convergence**. In fact, \( X_n \) converges in \( L^2 \) but does not converge almost surely because the random variables \( X_n \) still "jump" between 0 and 1 infinitely often, despite the fact that the expected size of these jumps diminishes as \( n \) increases.
 
----
-
-This is a good demonstration of how convergence in expectation (or \( L^p \) spaces) doesn't necessarily imply the stronger form of convergence required for almost sure convergence.
 
 
+- **Bounded in probability** means that the random variable \( Z_n \) stays within some finite range with high probability as \( n \) becomes large. More formally, for any \( \epsilon > 0 \), we have:
+
+\[
+\lim_{M \to \infty} \limsup_{n \to \infty} P(\|Z_n\| > M) = 0
+\]
+
+This condition is satisfied if the tail probability of \( Z_n \) decays faster than \( 1/n \), such as \( 1/n^2 \) or faster. This decay ensures that the sequence of random variables does not grow too large with probability.
+
+- If the tail probability decays **slower** than \( 1/n \) (for example, like \( 1/\sqrt{n} \) or \( 1/n \)), the sequence is **not** bounded in probability. For example, the random walk \( X_n \) that we discussed earlier does not decay fast enough to be bounded in probability.
+
+### Intuition in simple terms:
+- If the probability of a random variable \( Z_n \) taking a value larger than some threshold \( M \) decays **fast enough** (like \( 1/n^2 \) or faster), we can say that \( Z_n \) is "bounded" in probability and does not grow without bound.
+- If the decay rate is too slow (like \( 1/\sqrt{n} \) or slower), then \( Z_n \) can grow larger as \( n \) increases, so it is **not bounded in probability**.
+
+### Example of fast decay (bounded in probability):
+- A sequence of random variables where each \( Z_n \) has a tail probability decaying like \( 1/n^2 \) or faster would be bounded in probability because the probability of large deviations decreases very quickly as \( n \) increases.
+
+### Example of slow decay (not bounded in probability):
+- A sequence like the simple random walk \( X_n \) discussed earlier, where the tail probability decays like \( 1/\sqrt{n} \), is not bounded in probability because it does not decrease fast enough to keep the random variable within a fixed range as \( n \) grows large.
+
+
+### Example: Random Walk
+
+Consider the sequence of random variables \( (X_n) \) defined by a simple **random walk**. Let \( X_n \) be the sum of \( n \) independent and identically distributed (i.i.d.) random variables \( \epsilon_i \), where each \( \epsilon_i \) is a random variable taking values \( \pm 1 \) with equal probability (i.e., \( P(\epsilon_i = 1) = P(\epsilon_i = -1) = 0.5 \)):
+
+\[
+X_n = \sum_{i=1}^{n} \epsilon_i
+\]
+
+#### 1. **Growth of \( X_n \)**:
+- The random walk \( X_n \) describes a process where, at each step, the value of \( X_n \) can either increase or decrease by 1, depending on the outcome of \( \epsilon_i \).
+- Over time, the value of \( X_n \) can grow large in either the positive or negative direction, and the variance of \( X_n \) increases with \( n \).
+
+#### 2. **Behavior of \( X_n \) as \( n \to \infty \)**:
+- The distribution of \( X_n \) is roughly normal with mean 0 and variance \( n \), i.e., \( X_n \sim \mathcal{N}(0, n) \) asymptotically as \( n \) increases (due to the central limit theorem).
+- The probability that \( |X_n| > M \) (the random walk exceeds a large threshold \( M \)) will decay slowly as \( n \) increases, but it does **not** converge to 0 quickly enough to satisfy the condition for boundedness in probability.
+
+#### 3. **Probability Condition**:
+Let's check whether \( X_n \) satisfies the boundedness in probability condition:
+
+\[
+\lim_{M \to \infty} \limsup_{n \to \infty} P(\|X_n\| > M) = 0
+\]
+
+- Since \( X_n \) grows approximately like \( \sqrt{n} \), the probability that \( |X_n| \) exceeds a large value \( M \) behaves like:
+
+\[
+P(|X_n| > M) \sim 2 \left( 1 - \Phi\left( \frac{M}{\sqrt{n}} \right) \right)
+\]
+
+where \( \Phi \) is the cumulative distribution function (CDF) of the standard normal distribution. For large \( n \), this probability decays slower than \( 1/n \), meaning that \( X_n \) is not bounded in probability.
+
+#### 4. **Conclusion**:
+- As \( n \to \infty \), \( P(\|X_n\| > M) \) does not tend to 0 quickly enough, and \( X_n \) grows without bound in probability.
+- This violates the definition of boundedness in probability, as \( X_n \) does not remain within any fixed range with high probability as \( n \) increases.
+
+### Why Is It Not Bounded in Probability?
+
+- The random walk \( X_n \) does not have a bound that holds with high probability as \( n \) increases.
+- The random variable grows without bound, and even though the probability of large deviations from 0 decreases with \( n \), it does not decay fast enough to make \( X_n \) bounded in probability.
+- More formally, for large \( M \), the tail probabilities \( P(|X_n| > M) \) do not approach 0 fast enough, and thus the sequence does not satisfy the condition for boundedness in probability.
+
+This provides an example of a random variable that **is not bounded in probability**.
 
