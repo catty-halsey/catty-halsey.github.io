@@ -5,7 +5,7 @@ author: "Ziyan Li"
 categories: journal
 tags: [documentation, sample]
 ---
-
+In this blog, we attempt to explain the difference between maximum likelihood function(**MLE**) and restricted maximum likelihood function(**RMLE**).
 ### **1. Maximum Likelihood (ML)**
 ML estimates the model parameters (both fixed and random effects) by finding the values that **maximize the likelihood function**. This function represents the probability of observing the given data, given the model parameters.
 
