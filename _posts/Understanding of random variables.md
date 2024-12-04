@@ -1,7 +1,10 @@
-Yes, you are correct in your understanding of random variables (RVs) and how they relate to the distribution of the sample space.
-
-To break it down:
-
+---
+layout: post
+title: "Understanding of random variables"
+author: "Ziyan Li"
+categories: tutorials
+tags: [documentation, sample]
+---
 1. **Sample Space and Fixed Distribution**:  
    The **sample space** defines all possible outcomes for a random experiment. For example, when you roll a fair six-sided die, the sample space \(\Omega\) consists of \(\{1, 2, 3, 4, 5, 6\}\). The probability distribution over the sample space describes how likely each outcome is. For a fair die, each face has a probability of \(1/6\).
 
