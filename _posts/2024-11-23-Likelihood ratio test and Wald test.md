@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "F test and t test"
+title: "Likelihood ratio test and Wald test"
 author: "Ziyan Li"
 categories: journal
 tags: [documentation, sample]
