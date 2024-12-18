@@ -5,7 +5,50 @@ author: "Ziyan Li"
 categories: journal
 tags: [documentation, sample]
 ---
-In this blog, we discuss how the **F-test** related to **t-test** and **likelihood ratio test** in regression analysis.
+
+### 1. **Equivalence of the t-Test and the Wald Test**
+- When testing a single restriction (one-dimensional null hypothesis, e.g., $H_0: \theta = \theta_0$) in a linear regression with **normally distributed errors**:
+   - The **t-test** statistic is given by:
+
+$$
+t = \frac{\hat{\theta} - \theta_0}{\text{SE}(\hat{\theta})}.
+$$
+
+   - The **Wald test** for the same null hypothesis is:
+
+$$
+W = \frac{(\hat{\theta} - \theta_0)^2}{\text{var}(\hat{\theta})}.
+$$
+
+   Notice that $W = t^2$.  
+
+
+
+### 2. **Equivalence of the t-Test and F-Test**
+- The **F-test** is typically used in the context of linear regression to test more general hypotheses (e.g., involving multiple restrictions), but it also applies to a **single restriction**.  
+
+- In the case of **one restriction** (1D null hypothesis), the F-statistic is given by:
+
+   $$
+   F = t^2,
+   $$
+
+   where $t$ is the t-statistic for the same null hypothesis.  
+
+
+
+### 3. **Equivalence of Wald Test and F-Test**
+- From the above, we know that in this specific case:
+   - The Wald statistic is $W = t^2$.
+   - The F-statistic for 1 restriction is $F = t^2$.
+
+Thus, the Wald test and F-test also yield the **same test statistic** and **p-value** under these conditions.
+
+
+We have the following equivalences:
+1. The **t-test** and the **Wald test** use the **same test statistic** ($t$) but expressed differently: $W = t^2$.
+2. The **F-test** for 1 restriction gives the same result as the squared t-test statistic: $F = t^2$.
+3. All three tests (t-test, Wald test, F-test) yield the **same p-value**.
 
 We first introduce F-test, t-test, and likelihood ratio test.
 
