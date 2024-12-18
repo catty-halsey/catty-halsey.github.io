@@ -5,7 +5,7 @@ author: "Ziyan Li"
 categories: journal
 tags: [documentation, sample]
 ---
-In this blog, we attempt to illustrate the difference and similarities between M-estimator and admissible estimator.
+In this blog, we attempt to illustrate the difference and similarities between M-estimator and admissible estimator. We aim to clarify their definitions, highlight key properties, and explore their connections, particularly through the lens of asymptotics and robustness. While M-estimators are often pragmatic tools, defined through optimization of empirical criteria, admissible estimators stem from theoretical foundations, ensuring optimality under a given loss function.
 
 
 ### **1. M-Estimators in Formal Terms**
@@ -15,6 +15,7 @@ Given a parameter $\theta \in \Theta$ and observations $X_1, \ldots, X_n$, the M
 $$
 \hat{\theta}_n = \arg\max_{\theta \in \Theta} M_n(\theta),
 $$
+
 where $M_n(\theta) = \frac{1}{n} \sum_{i=1}^n m_\theta(X_i)$ is the empirical criterion. Here, $m_\theta$ is a function that depends on $\theta$ and the data $X_i$. 
 
 ### **Example 1.1: Maximum Likelihood Estimation (MLE)**
