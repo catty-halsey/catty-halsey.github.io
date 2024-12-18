@@ -56,53 +56,49 @@ $$
 
 ---
 
-### **3. Connection Between M-Estimators and Admissible Estimators**
 
-#### **Asymptotic Behavior of M-Estimators**
-Under regularity conditions (e.g., smoothness and identifiability of $m_\theta$), M-estimators satisfy:
-1. **Consistency:** $\hat{\theta}_n \to \theta_0$ in probability as $n \to \infty$.
-2. **Asymptotic Normality:** $\sqrt{n} (\hat{\theta}_n - \theta_0) \to \mathcal{N}(0, I^{-1}(\theta_0))$, where $I(\theta_0)$ is the Fisher information.
+### **3. 1D Case: MLE and Admissibility**
 
-This means M-estimators converge to the true parameter $\theta_0$ and become efficient (i.e., achieve the Cramér-Rao lower bound) in large samples, mimicking the behavior of admissible estimators.
+In the one-dimensional case ($X \in \mathbb{R}$), the Maximum Likelihood Estimator (MLE) often asymptotically aligns with the admissible estimator, particularly under regularity conditions. 
 
-#### **M-Estimators and the Bayes Estimator**
-- For large $n$, the empirical risk $M_n(\theta)$ approximates the true (population) risk:
-  
+#### **Theorem (1D Case):**
+Let $X_1, \ldots, X_n \sim f_\theta(x)$, and assume:
+1. $f_\theta(x)$ is differentiable with respect to $\theta$.
+2. The true parameter $\theta_0$ lies in the interior of $\Theta$.
+3. Fisher information $I(\theta_0) > 0$ exists and is finite.
+4. The log-likelihood function $\ell(\theta) = \sum_{i=1}^n \log f_\theta(X_i)$ satisfies standard regularity conditions.
+
+Then:
+1. The MLE $\hat{\theta}_n$ is consistent: $\hat{\theta}_n \to \theta_0$ as $n \to \infty$.
+2. $\sqrt{n} (\hat{\theta}_n - \theta_0) \to \mathcal{N}(0, I^{-1}(\theta_0))$, achieving the Cramér-Rao Lower Bound (CRLB).
+3. The MLE is asymptotically efficient and thus asymptotically admissible, as no estimator can uniformly dominate it in risk under squared error loss.
+
+#### **Higher-Dimensional Case: Stein’s Paradox**
+
+In dimensions $d > 2$, the MLE is no longer guaranteed to be admissible, even asymptotically. This phenomenon is elegantly captured by **Stein's paradox**, which demonstrates how a shrinkage estimator can outperform the MLE in higher-dimensional settings.
+
+##### **Stein’s Paradox:**
+Consider the problem of estimating $\theta \in \mathbb{R}^d$ from $X \sim \mathcal{N}(\theta, I_d)$, where $d \geq 3$. The MLE, $\hat{\theta} = X$, is not admissible under the squared error loss $R(\hat{\theta}, \theta) = \mathbb{E}[\|\hat{\theta} - \theta\|^2]$. Specifically, it is dominated by the **James-Stein estimator**:
+
 $$
-M_n(\theta) \to M(\theta) = \mathbb{E}[m_\theta(X)],
-$$
-
-where $M(\theta)$ represents the theoretical criterion minimized by admissible estimators. This explains why M-estimators approach admissible estimators asymptotically.
-
-- However, for small $n$, M-estimators lack information about the full distribution $P(X)$, unlike the Bayes estimator, which uses the complete posterior.
-
----
-
-### **4. Example: Comparing M-Estimators and Admissible Estimators**
-
-#### **Setup: Estimating the Mean**
-Let $X_1, \ldots, X_n \sim \mathcal{N}(\mu, \sigma^2)$, and we want to estimate $\mu$.
-
-1. **M-Estimator:** The sample mean:
-   
-$$
-\hat{\mu}_n = \frac{1}{n} \sum_{i=1}^n X_i,
+\hat{\theta}_{\text{JS}} = \left(1 - \frac{d-2}{\|X\|^2}\right) X.
 $$
 
-maximizes the likelihood or minimizes $\sum (X_i - \mu)^2$.
+This shrinkage estimator has uniformly lower risk compared to the MLE:
 
-3. **Admissible Estimator:** The Bayes estimator under a normal prior $\mu \sim \mathcal{N}(\mu_0, \tau^2)$:
-   
 $$
-\hat{\mu}_{\text{Bayes}} = \frac{\tau^2}{n\sigma^2 + \tau^2} \mu_0 + \frac{n\sigma^2}{n\sigma^2 + \tau^2} \hat{\mu}_n.
+R(\hat{\theta}_{\text{JS}}, \theta) < R(\hat{\theta}, \theta) \quad \forall \, \theta \in \mathbb{R}^d.
 $$
 
-- **Small $n$:** The Bayes estimator dominates the M-estimator, as it incorporates prior information ($\mu_0$).
-- **Large $n$:** The M-estimator converges to the true mean and approximates the Bayes estimator.
+The intution: The MLE treats each parameter independently, optimizing them without accounting for the dimensional structure of $\theta$. In higher dimensions, pooling or shrinking information across components reduces variance, even at the cost of introducing a small bias. This tradeoff leads to a lower overall risk (a better bias-variance balance).
 
----
+##### **Example: Normal Mean Estimation**
+- **Setup:** $X \sim \mathcal{N}(\theta, I_d)$, $d \geq 3$, squared error loss $L(\hat{\theta}, \theta) = \|\hat{\theta} - \theta\|^2$.
+- **MLE:** $\hat{\theta}_{\text{MLE}} = X$, with risk $R(\hat{\theta}_{\text{MLE}}, \theta) = d$.
+- **James-Stein Estimator:** $\hat{\theta}_{\text{JS}} = \left(1 - \frac{d-2}{\|X\|^2}\right) X$, with risk:
 
-### **5. Robustness and Global Optimality**
+$$
+R(\hat{\theta}_{\text{JS}}, \theta) = d - \frac{d-2}{\|\theta\|^2}.
+$$
 
-- **M-Estimator Robustness:** Sensitive to finite-sample variability and model misspecification. For example, outliers can heavily influence the sample mean.
-- **Admissible Estimator Robustness:** Globally minimizes risk due to its derivation from theoretical principles, ensuring optimality even in finite samples.
+For all $\theta$, the James-Stein estimator satisfies $R(\hat{\theta}_{\text{JS}}, \theta) < R(\hat{\theta}_{\text{MLE}}, \theta)$, demonstrating the superiority of shrinkage estimators in higher dimensions. This result exemplifies the limitations of the MLE and highlights the advantages of estimators that incorporate global information about the parameter space.
